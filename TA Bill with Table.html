@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TA/DA Calculator</title>
+<style>
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e9ecef;
+}
+
+.container {
+    width: 80%;
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px;
+}
+
+#form-container {
+    background: #fff;
+    padding: 30px;
+    margin-top: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3 {
+    color: #333;
+    text-align: center;
+}
+ .gradient-box {
+            background: linear-gradient(to right, #f8b500, #fceabb);
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .blog-link {
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+            font-size: 26px;
+            background: linear-gradient(to right, orange, red);
+            -webkit-background-clip: text;
+            color: transparent;
+            display: block;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+input, select {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, select:focus {
+    border-color: #66afe9;
+    box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+    outline: none;
+}
+
+button {
+    display: block;
+    width: 100%;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background: #0056b3;
+    transform: scale(1.02);
+}
+
+
+    #result {
+        display: none;
+        background: #fff;
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 10px;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    #result table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    #result th, #result td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+
+    #result th {
+        background-color: #f8f9fa;
+    }
+
+    @media (min-width: 768px) {
+        input, select {
+            width: 48%;
+            display: inline-block;
+        }
+
+        button {
+            width: 48%;
+        }
+    }
+
+    @media (min-width: 992px) {
+        input, select {
+            width: 32%;
+        }
+
+        button {
+            width: 32%;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div id="form-container">
+            <span class="blog-link">esedikhan.blogspot.com</span>
+            <div class="gradient-box">TA/DA Calculator</div>
+            <label for="employeeName">Name of Employee</label>
+            <input type="text" id="employeeName" required>
+
+            <label for="designation">Designation</label>
+            <input type="text" id="designation" required>
+
+            <label for="office">Office</label>
+            <input type="text" id="office" required>
+
+            <label for="bps">BPS of Employee</label>
+            <input type="number" id="bps" required>
+
+            <label for="journeyFrom">Journey From</label>
+            <select id="journeyFrom">
+                <option value="Abbottabad">Abbottabad</option>
+                <option value="Bannu">Bannu</option>
+                <option value="DIKhan">DIKhan</option>
+                <option value="Islamabad">Islamabad</option>
+                <option value="Kohat">Kohat</option>
+                <option value="Lakki Marwat">Lakki Marwat</option>
+                <option value="Lahore">Lahore</option>
+                <option value="Malakand">Malakand</option>
+                <option value="Mardan">Mardan</option>
+                <option value="Peshawar">Peshawar</option>
+                <option value="Rawalpindi">Rawalpindi</option>
+                <option value="Swat">Swat</option>
+                <option value="Tank">Tank</option>
+            </select>
+
+            <label for="journeyTo">Journey To</label>
+            <select id="journeyTo">
+                <option value="Abbottabad">Abbottabad</option>
+                <option value="Bannu">Bannu</option>
+                <option value="DIKhan">DIKhan</option>
+                <option value="Islamabad">Islamabad</option>
+                <option value="Kohat">Kohat</option>
+                <option value="Lakki Marwat">Lakki Marwat</option>
+                <option value="Lahore">Lahore</option>
+                <option value="Malakand">Malakand</option>
+                <option value="Mardan">Mardan</option>
+                <option value="Peshawar">Peshawar</option>
+                <option value="Rawalpindi">Rawalpindi</option>
+                <option value="Swat">Swat</option>
+                <option value="Tank">Tank</option>
+            </select>
+
+            <label for="journeyDate">Journey Date</label>
+            <input type="date" id="journeyDate" required>
+
+            <label for="returnDate">Return Date</label>
+            <input type="date" id="returnDate" required>
+
+            <label for="purpose">Journey Place and Purpose Detail</label>
+            <input type="text" id="purpose" required>
+
+            <label for="submissionMonth">Month of Bill Submission</label>
+            <input type="month" id="submissionMonth" required>
+
+            <label for="hotelStay">Hotel Stay and Charges Allowed?</label>
+            <select id="hotelStay">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <label for="specialOrdinary">Special / Ordinary</label>
+            <select id="specialOrdinary">
+                <option value="Special">Special</option>
+                <option value="Ordinary">Ordinary</option>
+            </select>
+
+            <label for="taYear">TA Rates for the Year</label>
+            <select id="taYear">
+                <option value="2017">2017</option>
+                <option value="2023">2023</option>
+            </select>
+
+            <label for="daYear">DA Rates for the Year</label>
+            <select id="daYear">
+                <option value="2017">2017</option>
+                <option value="2023">2023</option>
+            </select>
+
+            <label for="transportMode">Mode of Transportation</label>
+            <select id="transportMode">
+                <option value="GOVT: CAR">GOVT: CAR</option>
+                <option value="GOVT: MOTORCYCLE">GOVT: MOTORCYCLE</option>
+                <option value="PUBLIC TRANSPORT">PUBLIC TRANSPORT</option>
+                <option value="PERSONAL CAR/TAXI">PERSONAL CAR/TAXI</option>
+                <option value="MOTORCYCLE/BIKE">MOTORCYCLE/BIKE</option>
+                <option value="BICYCLE">BICYCLE</option>
+            </select>
+
+            <button onclick="calculate()">Calculate</button>
+        </div>
+
+        <div id="result">
+            <h2>Calculation Result</h2>
+            <div id="resultDetails">
+                <p><strong>Name:</strong> <span id="resultName"></span></p>
+                <p><strong>Designation:</strong> <span id="resultDesignation"></span></p>
+                <p><strong>Office:</strong> <span id="resultOffice"></span></p>
+                <p><strong>BPS:</strong> <span id="resultBps"></span></p>
+                <p><strong>Journey From:</strong> <span id="resultJourneyFrom"></span></p>
+                <p><strong>Journey To:</strong> <span id="resultJourneyTo"></span></p>
+                <p><strong>Journey Date:</strong> <span id="resultJourneyDate"></span></p>
+                <p><strong>Return Date:</strong> <span id="resultReturnDate"></span></p>
+                <p><strong>Purpose:</strong> <span id="resultPurpose"></span></p>
+                <p><strong>Submission Month:</strong> <span id="resultSubmissionMonth"></span></p>
+                <p><strong>Hotel Stay:</strong> <span id="resultHotelStay"></span></p>
+                <p><strong>Special/Ordinary:</strong> <span id="resultSpecialOrdinary"></span></p>
+                <p><strong>TA Year:</strong> <span id="resultTaYear"></span></p>
+                <p><strong>DA Year:</strong> <span id="resultDaYear"></span></p>
+                <p><strong>Transport Mode:</strong> <span id="resultTransportMode"></span></p>
+                <h3>TA/DA Breakdown</h3>
+                <p><strong>Total TA:</strong> <span id="totalTA"></span></p>
+                <p><strong>Total DA:</strong> <span id="totalDA"></span></p>
+                <p><strong>Total Amount:</strong> <span id="totalAmount"></span></p>
+                <button onclick="window.print()">Print</button>
+            </div>
+</body>
+<body>
+    <div class="container">
+            <div id="table-container">
+                <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travelling Allowance</title>
+    <style>
+        .container {
+            width: 100%; /* Full width of the viewport */
+            padding: 20px;
+            box-sizing: border-box; /* Ensure padding is included in width */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed; /* Fixed table layout to prevent auto-sizing */
+            margin-top: 20px;
+        }
+        #journeyTable {
+        font-size: 11px; /* Example: Reduce font size on smaller screens */
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            word-wrap: break-word; /* Ensure long words are wrapped within the cell */
+            overflow: hidden; /* Hide overflowing content */
+            text-overflow: ellipsis; /* Add ellipsis for overflowing text */
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            word-wrap: break-word; /* Ensure long words are wrapped within the cell */
+            /*white-space: nowrap; /* Prevent text from wrapping */
+            overflow: hidden; /* Hide text that overflows */
+            text-overflow: ellipsis; /* Show ellipsis (...) for overflowed text */
+        }
+        th {
+            background-color: #f2f2f2;
+            position: sticky; /* Sticky header */
+            top: 0; /* Stick to the top */
+            vertical-align: bottom; /* Align text from bottom to top */
+            height: 60px; /* Set height to increase the header's size */
+        }
+        th {
+            background-color: #f2f2f2;
+            position: sticky; /* Sticky header */
+            top: 0; /* Stick to the top */
+        }
+
+        /* Custom styles for specific second-tier headers */
+        th:nth-child(12) > div,
+        th:nth-child(13) > div,
+        th:nth-child(14) > div {
+            color: #993366; /* Dark pink text color */
+            font-size: 12px; /* Smaller font size */
+            font-weight: bold; /* Bold text */
+        }
+    </style>
+</body>
+<body>
+    <h2>Travelling Allowance</h2>
+    <table id="journeyTable">
+    <thead>
+        <tr>
+            <th colspan="3">Departure</th>
+            <th colspan="3">Arrival</th>
+            <th rowspan="2">Kind of Journey</th>
+            <th colspan="4">Railway, Steamer, Air Journey Fare</th>
+            <th Colspan="3">Distance in kilometers travelled by road or by trolly</th>
+            <th rowspan="2">No. of days for which daily allowances is Claimed</th> <!-- Modified to include only relevant sub-headers -->
+            <th colspan="2">Actual Expenses</th> <!-- Modified to include moved sub-headers -->
+            <th rowspan="2">Purpose of Journey or Halt</th>
+            <th rowspan="2">Remarks</th>
+        </tr>
+        <tr>
+            <th>Station</th>
+            <th>Date</th>
+            <th>Hour</th>
+            <th>Station</th>
+            <th>Date</th>
+            <th>Hour</th>
+            <th>Class</th>
+            <th>No. of Fare</th>
+            <th>Amount Rs</th>
+            <th>Ps</th>
+            <th>By taking Single seat in Public conveyance</th>
+            <th>By engaging full punblic conveyance</th>
+            <th>For which daily allowacnce is adminissible</th>
+            <th>Particulars</th> <!-- Moved from under Daily Allowance -->
+            <th>Amount Rs</th> <!-- Moved from under Daily Allowance -->
+        </tr>
+    </thead>
+        <tbody id="journeyBody">
+            <!-- Sample rows (you can add more or replace with your own data) -->
+            <!-- Add more rows as needed -->
+        </tbody>
+    </table>
+</body>
+<body>
+    <div class="container">
+            <div id="table-container">
+                <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travelling Allowance Back</title>
+    <style>
+        .container {
+            width: 100%; /* Full width of the viewport */
+            padding: 20px;
+            box-sizing: border-box; /* Ensure padding is included in width */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed; /* Fixed table layout to prevent auto-sizing */
+            margin-top: 20px;
+        }
+        #journeyTable {
+        font-size: 11px; /* Example: Reduce font size on smaller screens */
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            word-wrap: break-word; /* Ensure long words are wrapped within the cell */
+            overflow: hidden; /* Hide overflowing content */
+            text-overflow: ellipsis; /* Add ellipsis for overflowing text */
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            word-wrap: break-word; /* Ensure long words are wrapped within the cell */
+            /*white-space: nowrap; /* Prevent text from wrapping */
+            overflow: hidden; /* Hide text that overflows */
+            text-overflow: ellipsis; /* Show ellipsis (...) for overflowed text */
+        }
+        th {
+            background-color: #f2f2f2;
+            position: sticky; /* Sticky header */
+            top: 0; /* Stick to the top */
+            vertical-align: bottom; /* Align text from bottom to top */
+            height: 60px; /* Set height to increase the header's size */
+        }
+        th {
+            background-color: #f2f2f2;
+            position: sticky; /* Sticky header */
+            top: 0; /* Stick to the top */
+        }
+
+        /* Custom styles for specific second-tier headers */
+        th:nth-child(12) > div,
+        th:nth-child(13) > div,
+        th:nth-child(14) > div {
+            color: #993366; /* Dark pink text color */
+            font-size: 12px; /* Smaller font size */
+            font-weight: bold; /* Bold text */
+        }
+    </style>
+</body>
+<body>
+    <h2>Travelling Allowance Back</h2>
+    <table id="journeyTableBack">
+    <thead>
+        <tr>
+            <th colspan="3">Departure</th>
+            <th colspan="3">Arrival</th>
+            <th rowspan="2">Kind of Journey</th>
+            <th colspan="4">Railway, Steamer, Air Journey Fare</th>
+            <th Colspan="3">Distance in kilometers travelled by road or by trolly</th>
+            <th rowspan="2">No. of days for which daily allowances is Claimed</th> <!-- Modified to include only relevant sub-headers -->
+            <th colspan="2">Actual Expenses</th> <!-- Modified to include moved sub-headers -->
+            <th rowspan="2">Purpose of Journey or Halt</th>
+            <th rowspan="2">Remarks</th>
+        </tr>
+        <tr>
+            <th>Station</th>
+            <th>Date</th>
+            <th>Hour</th>
+            <th>Station</th>
+            <th>Date</th>
+            <th>Hour</th>
+            <th>Class</th>
+            <th>No. of Fare</th>
+            <th>Amount Rs</th>
+            <th>Ps</th>
+            <th>By taking Single seat in Public conveyance</th>
+            <th>By engaging full punblic conveyance</th>
+            <th>For which daily allowacnce is adminissible</th>
+            <th>Particulars</th> <!-- Moved from under Daily Allowance -->
+            <th>Amount Rs</th> <!-- Moved from under Daily Allowance -->
+        </tr>
+    </thead>
+        <tbody id="journeyBodyBack">
+            <!-- <tr class="spanning-row">
+                        <td colspan="19"></td>
+                    </tr>
+            <!-- Sample rows (you can add more or replace with your own data) -->
+            <!-- Add more rows as needed -->
+        </tbody>
+    </table>
+</body>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+        const rates = {
+            2017: {
+                TA: {
+                    "GOVT: CAR": 0,
+                    "GOVT: MOTORCYCLE": 0,
+                    "PUBLIC TRANSPORT": 2.5,
+                    "PERSONAL CAR/TAXI": 10,
+                    "MOTORCYCLE/BIKE": 4,
+                    "BICYCLE": 2
+                },
+                DA: {
+                    9: {special: 880, ordinary: 624},
+                    10: {special: 880, ordinary: 624},
+                    11: {special: 880, ordinary: 624},
+                    12: {special: 1440, ordinary: 1120},
+                    13: {special: 1440, ordinary: 1120},
+                    14: {special: 1440, ordinary: 1120},
+                    15: {special: 1440, ordinary: 1120},
+                    16: {special: 1440, ordinary: 1120},
+                    17: {special: 2560, ordinary: 2000},
+                    18: {special: 2560, ordinary: 2000},
+                    19: {special: 3280, ordinary: 2480},
+                    20: {special: 3280, ordinary: 2480},
+                    21: {special: 4000, ordinary: 2800},
+                    22: {special: 4800, ordinary: 2800}
+                }
+            },
+            2023: {
+                TA: {
+                    "GOVT: CAR": 0,
+                    "GOVT: MOTORCYCLE": 0,
+                    "PUBLIC TRANSPORT": 3.75,
+                    "PERSONAL CAR/TAXI": 15,
+                    "MOTORCYCLE/BIKE": 6,
+                    "BICYCLE": 3
+                },
+                DA: {
+                    9: {special: 1320, ordinary: 936},
+                    10: {special: 1320, ordinary: 936},
+                    11: {special: 1320, ordinary: 936},
+                    12: {special: 2160, ordinary: 1680},
+                    13: {special: 2160, ordinary: 1680},
+                    14: {special: 2160, ordinary: 1680},
+                    15: {special: 2160, ordinary: 1680},
+                    16: {special: 2160, ordinary: 1680},
+                    17: {special: 3840, ordinary: 3000},
+                    18: {special: 3840, ordinary: 3000},
+                    19: {special: 4920, ordinary: 3720},
+                    20: {special: 4920, ordinary: 3720},
+                    21: {special: 6000, ordinary: 4200},
+                    22: {special: 7200, ordinary: 4200}
+                }
+            }
+        };
+
+        const distances = {
+            Abbottabad: { Abbottabad: 0, Bannu: 340, DIKhan: 480, Islamabad: 150, Kohat: 280, "Lakki Marwat": 360, Lahore: 520, Malakand: 220, Mardan: 180, Peshawar: 150, Rawalpindi: 130, Swat: 190, Tank: 500 },
+            Bannu: { Abbottabad: 340, Bannu: 0, DIKhan: 145, Islamabad: 300, Kohat: 100, "Lakki Marwat": 50, Lahore: 400, Malakand: 420, Mardan: 350, Peshawar: 300, Rawalpindi: 280, Swat: 460, Tank: 200 },
+            DIKhan: { Abbottabad: 480, Bannu: 145, DIKhan: 0, Islamabad: 380, Kohat: 180, "Lakki Marwat": 130, Lahore: 520, Malakand: 500, Mardan: 430, Peshawar: 380, Rawalpindi: 360, Swat: 540, Tank: 75 },
+            Islamabad: { Abbottabad: 150, Bannu: 300, DIKhan: 380, Islamabad: 0, Kohat: 180, "Lakki Marwat": 280, Lahore: 380, Malakand: 270, Mardan: 200, Peshawar: 160, Rawalpindi: 20, Swat: 220, Tank: 410 },
+            Kohat: { Abbottabad: 280, Bannu: 100, DIKhan: 180, Islamabad: 180, Kohat: 0, "Lakki Marwat": 70, Lahore: 460, Malakand: 300, Mardan: 230, Peshawar: 150, Rawalpindi: 160, Swat: 300, Tank: 210 },
+            "Lakki Marwat": { Abbottabad: 360, Bannu: 50, DIKhan: 130, Islamabad: 280, Kohat: 70, "Lakki Marwat": 0, Lahore: 440, Malakand: 380, Mardan: 310, Peshawar: 250, Rawalpindi: 260, Swat: 420, Tank: 160 },
+            Lahore: { Abbottabad: 520, Bannu: 400, DIKhan: 520, Islamabad: 380, Kohat: 460, "Lakki Marwat": 440, Lahore: 0, Malakand: 600, Mardan: 530, Peshawar: 480, Rawalpindi: 360, Swat: 560, Tank: 550 },
+            Malakand: { Abbottabad: 220, Bannu: 420, DIKhan: 500, Islamabad: 270, Kohat: 300, "Lakki Marwat": 380, Lahore: 600, Malakand: 0, Mardan: 70, Peshawar: 60, Rawalpindi: 250, Swat: 90, Tank: 540 },
+            Mardan: { Abbottabad: 180, Bannu: 350, DIKhan: 430, Islamabad: 200, Kohat: 230, "Lakki Marwat": 310, Lahore: 530, Malakand: 70, Mardan: 0, Peshawar: 60, Rawalpindi: 180, Swat: 160, Tank: 470 },
+            Peshawar: { Abbottabad: 150, Bannu: 300, DIKhan: 380, Islamabad: 160, Kohat: 150, "Lakki Marwat": 250, Lahore: 480, Malakand: 60, Mardan: 60, Peshawar: 0, Rawalpindi: 160, Swat: 160, Tank: 410 },
+            Rawalpindi: { Abbottabad: 130, Bannu: 280, DIKhan: 360, Islamabad: 20, Kohat: 160, "Lakki Marwat": 260, Lahore: 360, Malakand: 250, Mardan: 180, Peshawar: 160, Rawalpindi: 0, Swat: 220, Tank: 390 },
+            Swat: { Abbottabad: 190, Bannu: 460, DIKhan: 540, Islamabad: 220, Kohat: 300, "Lakki Marwat": 420, Lahore: 560, Malakand: 90, Mardan: 160, Peshawar: 160, Rawalpindi: 220, Swat: 0, Tank: 570 },
+            Tank: { Abbottabad: 500, Bannu: 200, DIKhan: 75, Islamabad: 410, Kohat: 210, "Lakki Marwat": 160, Lahore: 550, Malakand: 540, Mardan: 470, Peshawar: 410, Rawalpindi: 390, Swat: 570, Tank: 0 }
+        };
+
+        function calculate() {
+            const employeeName = document.getElementById('employeeName').value;
+            const designation = document.getElementById('designation').value;
+            const office = document.getElementById('office').value;
+            const bps = document.getElementById('bps').value;
+            const journeyFrom = document.getElementById('journeyFrom').value;
+            const journeyTo = document.getElementById('journeyTo').value;
+            const journeyDate = document.getElementById('journeyDate').value;
+            const returnDate = document.getElementById('returnDate').value;
+            const purpose = document.getElementById('purpose').value;
+            const submissionMonth = document.getElementById('submissionMonth').value;
+            const hotelStay = document.getElementById('hotelStay').value;
+            const specialOrdinary = document.getElementById('specialOrdinary').value;
+            const taYear = document.getElementById('taYear').value;
+            const daYear = document.getElementById('daYear').value;
+            const transportMode = document.getElementById('transportMode').value;
+
+            const distance = distances[journeyFrom][journeyTo];
+            const taRate = rates[taYear].TA[transportMode] || 0;
+            const daRate = rates[daYear].DA[bps] || { special: 0, ordinary: 0 };
+            const da = specialOrdinary === 'Special' ? daRate.special : daRate.ordinary;
+
+            const journeyDateObj = new Date(journeyDate);
+            const returnDateObj = new Date(returnDate);
+            const daysStayed = Math.round((returnDateObj - journeyDateObj) / (1000 * 60 * 60 * 24));
+            const nightsStayed = daysStayed;
+
+            let daDays = daysStayed; // DA for journey day and each day stay
+            let daNights = nightsStayed; // DA for each night stay
+
+            // Calculation of DA for nights
+            let totalDA;
+            if (specialOrdinary === 'Special') {
+                totalDA = (daDays * da) + (daNights * da * 3);
+            } else {
+                totalDA = (daDays * da) + (daNights * da * 1.5);
+            }
+
+            const totalTA = distance * 2 * taRate;
+            const totalAmount = totalTA + totalDA;
+
+            document.getElementById('resultName').innerText = employeeName;
+            document.getElementById('resultDesignation').innerText = designation;
+            document.getElementById('resultOffice').innerText = office;
+            document.getElementById('resultBps').innerText = bps;
+            document.getElementById('resultJourneyFrom').innerText = journeyFrom;
+            document.getElementById('resultJourneyTo').innerText = journeyTo;
+            document.getElementById('resultJourneyDate').innerText = journeyDate;
+            document.getElementById('resultReturnDate').innerText = returnDate;
+            document.getElementById('resultPurpose').innerText = purpose;
+            document.getElementById('resultSubmissionMonth').innerText = submissionMonth;
+            document.getElementById('resultHotelStay').innerText = hotelStay;
+            document.getElementById('resultSpecialOrdinary').innerText = specialOrdinary;
+            document.getElementById('resultTaYear').innerText = taYear;
+            document.getElementById('resultDaYear').innerText = daYear;
+            document.getElementById('resultTransportMode').innerText = transportMode;
+            document.getElementById('totalTA').innerText = totalTA.toFixed(2);
+            document.getElementById('totalDA').innerText = totalDA.toFixed(2);
+            document.getElementById('totalAmount').innerText = totalAmount.toFixed(2);
+
+            document.getElementById('result').style.display = 'block';
+            // Format the dates
+            const formattedJourneyDate = formatDate(journeyDate);
+            const formattedReturnDate = formatDate(returnDate);
+            // Function to return empty string for 0 values
+            function displayValue(value) {
+                return value === 0 ? '' : value;
+            }
+            // Create a new row for the journey table
+            const tableBody = document.getElementById('journeyBody');
+            const newRow = document.createElement('tr');
+
+            // Add cells to the new row
+            newRow.innerHTML = `
+                <td>${journeyFrom}</td>
+                <td>${formattedJourneyDate}</td>
+                <td>${"09:00 AM"}</td>
+                <td>${journeyTo}</td>
+                <td>${formattedReturnDate}</td>
+                <td>${"03:00 PM"}</td>
+                <td>${transportMode}</td>
+                <td>${taRate}</td>
+                <td>${""}</td>
+                <td>${" "}</td>
+                <td>${""}</td>
+                <td>${distance*2}</td>
+                <td>${" "}</td>
+                <td>${""}</td>
+                <td>${daysStayed}</td>
+                <td>${daNights}</td>
+                <td>${totalAmount}</td>
+                <td>${purpose}</td>
+                <td>${specialOrdinary}</td>
+            `;
+
+            // Append the new row to the table
+            tableBody.appendChild(newRow);
+
+            // Show the result section
+            document.getElementById('result').style.display = 'block';
+        }
+        // Example date formatting function
+        function formatDate(dateString) {
+            const dateParts = dateString.split("-");
+            return `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
+        }
+        // Helper function to format time (extracting hours and minutes)
+        function formatTime(dateObj) {
+            return `${dateObj.getHours()}:${dateObj.getMinutes().toString().padStart(2, '0')}`;
+
+        }
+        // Get the table body
+    // Create a new row for the journey table
+            var tableBody2 = document.getElementById('journeyBodyBack');
+            var newRow = document.createElement('tr');
+
+            // Add cells to the new row
+            newRow.innerHTML = `
+                <td>${journeyFrom}</td>
+                <td>${formattedJourneyDate}</td>
+                <td>${"09:00 AM"}</td>
+                <td>${journeyTo}</td>
+                <td>${formattedReturnDate}</td>
+                <td>${"03:00 PM"}</td>
+                <td>${transportMode}</td>
+                <td>${taRate}</td>
+                <td>${""}</td>
+                <td>${" "}</td>
+                <td>${""}</td>
+                <td>${distance*2}</td>
+                <td>${" "}</td>
+                <td>${""}</td>
+                <td>${daysStayed}</td>
+                <td>${daNights}</td>
+                <td>${totalAmount}</td>
+                <td>${purpose}</td>
+                <td>${specialOrdinary}</td>
+            `;
+
+
+
+    // Append the new row to the table
+            tableBody2.appendChild(newRow);
+
+
+    </script>
+</body>
+</html>
