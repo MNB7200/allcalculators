@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revised Basic Pay Scales Charts (RBPS)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        
+        .container:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #770066;
+            margin-bottom: 0px;
+	    padding: 0px;
+	    line-height: 25px;
+            font-size: 2em;
+        }
+       h2 {
+            text-align: center;
+            color: #b00b69;
+            margin-bottom: 0px;
+	    line-height: 0px;
+            font-size: 18px;
+        }
+        .dropdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        select {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 22px;
+            transition: all 0.3s ease;
+            background-color: #fcc162;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        select:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+        }
+        .dropdown select {
+            background: #f7b865;
+            color: #e8092b;
+            border: none;
+            cursor: pointer;
+        }
+        .dropdown select option {
+            background: #fff;
+            color: #ff6f00;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+	    vertical-align: middle; /* Aligns content vertically centered */
+        }
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+	    vertical-align: middle; /* Aligns content vertically centered */
+        }
+        tr:nth-child(even) {
+            background-color: #fafafa;
+	    height: auto; /* Allows row height to adjust automatically based on content */
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+	    height: auto; /* Allows row height to adjust automatically based on content */
+        }
+        @media (max-width: 768px) {
+            .dropdown {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+            select {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Revised Basic Pay Scales Charts (RBPS)</h1>
+	<h2>esedikhan.blogspot.com ΞΞΞ made by Noman Muhammad</h2>
+        <div class="dropdown">
+            <select id="year" onchange="updateTable()">
+                <option value="all">All Years</option>
+                <option value="2001">2001</option>
+                <option value="2005">2005</option>
+                <option value="2007">2007</option>
+                <option value="2008">2008</option>
+                <option value="2011">2011</option>
+                <option value="2015">2015</option>
+                <option value="2016">2016</option>
+                <option value="2017">2017</option>
+                <option value="2022">2022</option>
+            </select>
+            <select id="bps" onchange="updateTable()">
+                <option value="all">All BPS</option>
+                <option value="1">BPS-1</option>
+                <option value="2">BPS-2</option>
+                <option value="3">BPS-3</option>
+                <option value="4">BPS-4</option>
+                <option value="5">BPS-5</option>
+                <option value="6">BPS-6</option>
+                <option value="7">BPS-7</option>
+                <option value="8">BPS-8</option>
+                <option value="9">BPS-9</option>
+                <option value="10">BPS-10</option>
+                <option value="11">BPS-11</option>
+                <option value="12">BPS-12</option>
+                <option value="13">BPS-13</option>
+                <option value="14">BPS-14</option>
+                <option value="15">BPS-15</option>
+                <option value="16">BPS-16</option>
+                <option value="17">BPS-17</option>
+                <option value="18">BPS-18</option>
+                <option value="19">BPS-19</option>
+                <option value="20">BPS-20</option>
+                <option value="21">BPS-21</option>
+                <option value="22">BPS-22</option>
+            </select>
+        </div>
+        <table id="payScaleTable">
+            <thead>
+                <tr>
+                    <th>BPS</th>
+                    <th>Year</th>
+                    <th>MIN.</th>
+                    <th>INC.</th>
+                    <th>MAX.</th>
+                    <th>Initial</th>
+                    <th>1st</th>
+                    <th>2nd</th>
+                    <th>3rd</th>
+                    <th>4th</th>
+                    <th>5th</th>
+                    <th>6th</th>
+                    <th>7th</th>
+                    <th>8th</th>
+                    <th>9th</th>
+                    <th>10th</th>
+                    <th>11th</th>
+                    <th>12th</th>
+                    <th>13th</th>
+                    <th>14th</th>
+                    <th>15th</th>
+                    <th>16th</th>
+                    <th>17th</th>
+                    <th>18th</th>
+                    <th>19th</th>
+                    <th>20th</th>
+                    <th>21st</th>
+                    <th>22nd</th>
+                    <th>23rd</th>
+                    <th>24th</th>
+                    <th>25th</th>
+                    <th>26th</th>
+                    <th>27th</th>
+                    <th>28th</th>
+                    <th>29th</th>
+                    <th>30th</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dynamic rows will be added here by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+    const data = [
+    // BPS 1
+    { BPS: 1, Year: 2001, MIN: 1870, INC: 55, MAX: 3520 },
+    { BPS: 1, Year: 2005, MIN: 2150, INC: 65, MAX: 4100 },
+    { BPS: 1, Year: 2007, MIN: 2475, INC: 75, MAX: 4725 },
+    { BPS: 1, Year: 2008, MIN: 2970, INC: 90, MAX: 5670 },
+    { BPS: 1, Year: 2011, MIN: 4800, INC: 150, MAX: 9300 },
+    { BPS: 1, Year: 2015, MIN: 6210, INC: 195, MAX: 12060 },
+    { BPS: 1, Year: 2016, MIN: 7640, INC: 240, MAX: 14840 },
+    { BPS: 1, Year: 2017, MIN: 9130, INC: 290, MAX: 17830 },
+    { BPS: 1, Year: 2022, MIN: 13550, INC: 430, MAX: 26450 },
+    
+    // BPS 2
+    { BPS: 2, Year: 2001, MIN: 1915, INC: 65, MAX: 3865 },
+    { BPS: 2, Year: 2005, MIN: 2200, INC: 75, MAX: 4450 },
+    { BPS: 2, Year: 2007, MIN: 2530, INC: 85, MAX: 5080 },
+    { BPS: 2, Year: 2008, MIN: 3035, INC: 100, MAX: 6035 },
+    { BPS: 2, Year: 2011, MIN: 4900, INC: 170, MAX: 10000 },
+    { BPS: 2, Year: 2015, MIN: 6335, INC: 220, MAX: 12935 },
+    { BPS: 2, Year: 2016, MIN: 7790, INC: 275, MAX: 16040 },
+    { BPS: 2, Year: 2017, MIN: 9310, INC: 330, MAX: 19210 },
+    { BPS: 2, Year: 2022, MIN: 13820, INC: 490, MAX: 28520 },
+    
+    // BPS 3
+    { BPS: 3, Year: 2001, MIN: 1980, INC: 75, MAX: 4230 },
+    { BPS: 3, Year: 2005, MIN: 2275, INC: 85, MAX: 4825 },
+    { BPS: 3, Year: 2007, MIN: 2615, INC: 100, MAX: 5615 },
+    { BPS: 3, Year: 2008, MIN: 3140, INC: 120, MAX: 6740 },
+    { BPS: 3, Year: 2011, MIN: 5050, INC: 200, MAX: 11050 },
+    { BPS: 3, Year: 2015, MIN: 6535, INC: 260, MAX: 14335 },
+    { BPS: 3, Year: 2016, MIN: 8040, INC: 325, MAX: 17790 },
+    { BPS: 3, Year: 2017, MIN: 9610, INC: 390, MAX: 21310 },
+    { BPS: 3, Year: 2022, MIN: 14260, INC: 580, MAX: 31660 },
+
+    // BPS 4
+    { BPS: 4, Year: 2001, MIN: 2040, INC: 85, MAX: 4590 },
+    { BPS: 4, Year: 2005, MIN: 2345, INC: 100, MAX: 5345 },
+    { BPS: 4, Year: 2007, MIN: 2700, INC: 115, MAX: 6150 },
+    { BPS: 4, Year: 2008, MIN: 3240, INC: 140, MAX: 7440 },
+    { BPS: 4, Year: 2011, MIN: 5200, INC: 230, MAX: 12100 },
+    { BPS: 4, Year: 2015, MIN: 6730, INC: 300, MAX: 15730 },
+    { BPS: 4, Year: 2016, MIN: 8280, INC: 370, MAX: 19380 },
+    { BPS: 4, Year: 2017, MIN: 9900, INC: 440, MAX: 23100 },
+    { BPS: 4, Year: 2022, MIN: 14690, INC: 660, MAX: 34490 },
+
+    // BPS 5
+    { BPS: 5, Year: 2001, MIN: 2100, INC: 100, MAX: 5100 },
+    { BPS: 5, Year: 2005, MIN: 2415, INC: 115, MAX: 5865 },
+    { BPS: 5, Year: 2007, MIN: 2780, INC: 135, MAX: 6830 },
+    { BPS: 5, Year: 2008, MIN: 3340, INC: 160, MAX: 8140 },
+    { BPS: 5, Year: 2011, MIN: 5400, INC: 260, MAX: 13200 },
+    { BPS: 5, Year: 2015, MIN: 6985, INC: 340, MAX: 17185 },
+    { BPS: 5, Year: 2016, MIN: 8590, INC: 420, MAX: 21190 },
+    { BPS: 5, Year: 2017, MIN: 10260, INC: 500, MAX: 25260 },
+    { BPS: 5, Year: 2022, MIN: 15230, INC: 750, MAX: 37730 },
+
+    // BPS 6
+    { BPS: 6, Year: 2001, MIN: 2160, INC: 110, MAX: 5460 },
+    { BPS: 6, Year: 2005, MIN: 2485, INC: 125, MAX: 6235 },
+    { BPS: 6, Year: 2007, MIN: 2860, INC: 145, MAX: 7210 },
+    { BPS: 6, Year: 2008, MIN: 3430, INC: 175, MAX: 8680 },
+    { BPS: 6, Year: 2011, MIN: 5600, INC: 290, MAX: 14300 },
+    { BPS: 6, Year: 2015, MIN: 7235, INC: 375, MAX: 18485 },
+    { BPS: 6, Year: 2016, MIN: 8900, INC: 470, MAX: 23000 },
+    { BPS: 6, Year: 2017, MIN: 10620, INC: 560, MAX: 27420 },
+    { BPS: 6, Year: 2022, MIN: 15760, INC: 840, MAX: 40960 },
+
+    // BPS 7
+    { BPS: 7, Year: 2001, MIN: 2220, INC: 120, MAX: 5820 },
+    { BPS: 7, Year: 2005, MIN: 2555, INC: 140, MAX: 6755 },
+    { BPS: 7, Year: 2007, MIN: 2940, INC: 160, MAX: 7740 },
+    { BPS: 7, Year: 2008, MIN: 3530, INC: 190, MAX: 9230 },
+    { BPS: 7, Year: 2011, MIN: 5800, INC: 320, MAX: 15400 },
+    { BPS: 7, Year: 2015, MIN: 7490, INC: 415, MAX: 19940 },
+    { BPS: 7, Year: 2016, MIN: 9220, INC: 510, MAX: 24520 },
+    { BPS: 7, Year: 2017, MIN: 10990, INC: 610, MAX: 29290 },
+    { BPS: 7, Year: 2022, MIN: 16310, INC: 910, MAX: 43610 },
+
+    // BPS 8
+    { BPS: 8, Year: 2001, MIN: 2310, INC: 130, MAX: 6210 },
+    { BPS: 8, Year: 2005, MIN: 2655, INC: 150, MAX: 7155 },
+    { BPS: 8, Year: 2007, MIN: 3055, INC: 175, MAX: 8305 },
+    { BPS: 8, Year: 2008, MIN: 3655, INC: 210, MAX: 9955 },
+    { BPS: 8, Year: 2011, MIN: 6000, INC: 350, MAX: 16500 },
+    { BPS: 8, Year: 2015, MIN: 7750, INC: 455, MAX: 21400 },
+    { BPS: 8, Year: 2016, MIN: 9540, INC: 560, MAX: 26340 },
+    { BPS: 8, Year: 2017, MIN: 11380, INC: 670, MAX: 31480 },
+    { BPS: 8, Year: 2022, MIN: 16890, INC: 1000, MAX: 46890 },
+
+    // BPS 9
+    { BPS: 9, Year: 2001, MIN: 2410, INC: 145, MAX: 6760 },
+    { BPS: 9, Year: 2005, MIN: 2770, INC: 165, MAX: 7720 },
+    { BPS: 9, Year: 2007, MIN: 3185, INC: 190, MAX: 8885 },
+    { BPS: 9, Year: 2008, MIN: 3820, INC: 230, MAX: 10720 },
+    { BPS: 9, Year: 2011, MIN: 6200, INC: 380, MAX: 17600 },
+    { BPS: 9, Year: 2015, MIN: 8015, INC: 495, MAX: 22865 },
+    { BPS: 9, Year: 2016, MIN: 9860, INC: 610, MAX: 28160 },
+    { BPS: 9, Year: 2017, MIN: 11770, INC: 730, MAX: 33670 },
+    { BPS: 9, Year: 2022, MIN: 17470, INC: 1090, MAX: 50170 },
+
+    // BPS 10
+    { BPS: 10, Year: 2001, MIN: 2490, INC: 160, MAX: 7290 },
+    { BPS: 10, Year: 2005, MIN: 2865, INC: 185, MAX: 8415 },
+    { BPS: 10, Year: 2007, MIN: 3295, INC: 215, MAX: 9745 },
+    { BPS: 10, Year: 2008, MIN: 3955, INC: 260, MAX: 11755 },
+    { BPS: 10, Year: 2011, MIN: 6400, INC: 420, MAX: 19000 },
+    { BPS: 10, Year: 2015, MIN: 8275, INC: 544, MAX: 24595 },
+    { BPS: 10, Year: 2016, MIN: 10180, INC: 670, MAX: 30280 },
+    { BPS: 10, Year: 2017, MIN: 12160, INC: 800, MAX: 36160 },
+    { BPS: 10, Year: 2022, MIN: 18050, INC: 1190, MAX: 53750 },
+
+    // BPS 11
+    { BPS: 11, Year: 2001, MIN: 2590, INC: 175, MAX: 7840 },
+    { BPS: 11, Year: 2005, MIN: 2980, INC: 200, MAX: 8980 },
+    { BPS: 11, Year: 2007, MIN: 3430, INC: 230, MAX: 10330 },
+    { BPS: 11, Year: 2008, MIN: 4115, INC: 275, MAX: 12365 },
+    { BPS: 11, Year: 2011, MIN: 6600, INC: 460, MAX: 20400 },
+    { BPS: 11, Year: 2015, MIN: 8540, INC: 595, MAX: 26390 },
+    { BPS: 11, Year: 2016, MIN: 10510, INC: 740, MAX: 32710 },
+    { BPS: 11, Year: 2017, MIN: 12570, INC: 880, MAX: 38970 },
+    { BPS: 11, Year: 2022, MIN: 18650, INC: 1310, MAX: 57950 },
+
+    // BPS 12
+    { BPS: 12, Year: 2001, MIN: 2745, INC: 195, MAX: 8595 },
+    { BPS: 12, Year: 2005, MIN: 3155, INC: 225, MAX: 9905 },
+    { BPS: 12, Year: 2007, MIN: 3630, INC: 260, MAX: 11430 },
+    { BPS: 12, Year: 2008, MIN: 4355, INC: 310, MAX: 13655 },
+    { BPS: 12, Year: 2011, MIN: 7000, INC: 500, MAX: 22000 },
+    { BPS: 12, Year: 2015, MIN: 9055, INC: 650, MAX: 28555 },
+    { BPS: 12, Year: 2016, MIN: 11140, INC: 800, MAX: 35140 },
+    { BPS: 12, Year: 2017, MIN: 13320, INC: 960, MAX: 42120 },
+    { BPS: 12, Year: 2022, MIN: 19770, INC: 1430, MAX: 62670 },
+
+    // BPS 13
+    { BPS: 13, Year: 2001, MIN: 2925, INC: 215, MAX: 9375 },
+    { BPS: 13, Year: 2005, MIN: 3365, INC: 245, MAX: 10715 },
+    { BPS: 13, Year: 2007, MIN: 3870, INC: 285, MAX: 12420 },
+    { BPS: 13, Year: 2008, MIN: 4645, INC: 340, MAX: 14845 },
+    { BPS: 13, Year: 2011, MIN: 7500, INC: 550, MAX: 24000 },
+    { BPS: 13, Year: 2015, MIN: 9700, INC: 715, MAX: 31150 },
+    { BPS: 13, Year: 2016, MIN: 11930, INC: 880, MAX: 38330 },
+    { BPS: 13, Year: 2017, MIN: 14260, INC: 1050, MAX: 45760 },
+    { BPS: 13, Year: 2022, MIN: 21160, INC: 1560, MAX: 67960 },
+
+    // BPS 14
+    { BPS: 14, Year: 2001, MIN: 3100, INC: 240, MAX: 10300 },
+    { BPS: 14, Year: 2005, MIN: 3565, INC: 275, MAX: 11815 },
+    { BPS: 14, Year: 2007, MIN: 4100, INC: 315, MAX: 13550 },
+    { BPS: 14, Year: 2008, MIN: 4920, INC: 380, MAX: 16320 },
+    { BPS: 14, Year: 2011, MIN: 8000, INC: 610, MAX: 26300 },
+    { BPS: 14, Year: 2015, MIN: 10340, INC: 790, MAX: 34040 },
+    { BPS: 14, Year: 2016, MIN: 12720, INC: 980, MAX: 42120 },
+    { BPS: 14, Year: 2017, MIN: 15180, INC: 1170, MAX: 50280 },
+    { BPS: 14, Year: 2022, MIN: 22530, INC: 1740, MAX: 74730 },
+
+    // BPS 15
+    { BPS: 15, Year: 2001, MIN: 3285, INC: 265, MAX: 11235 },
+    { BPS: 15, Year: 2005, MIN: 3780, INC: 305, MAX: 12930 },
+    { BPS: 15, Year: 2007, MIN: 4350, INC: 350, MAX: 14850 },
+    { BPS: 15, Year: 2008, MIN: 5220, INC: 420, MAX: 17820 },
+    { BPS: 15, Year: 2011, MIN: 8500, INC: 700, MAX: 29500 },
+    { BPS: 15, Year: 2015, MIN: 10985, INC: 905, MAX: 38135 },
+    { BPS: 15, Year: 2016, MIN: 13510, INC: 1120, MAX: 47110 },
+    { BPS: 15, Year: 2017, MIN: 16120, INC: 1330, MAX: 56020 },
+    { BPS: 15, Year: 2022, MIN: 23920, INC: 1980, MAX: 83320 },
+
+    // BPS 16
+    { BPS: 16, Year: 2001, MIN: 3805, INC: 295, MAX: 12655 },
+    { BPS: 16, Year: 2005, MIN: 4375, INC: 340, MAX: 14575 },
+    { BPS: 16, Year: 2007, MIN: 5050, INC: 390, MAX: 16750 },
+    { BPS: 16, Year: 2008, MIN: 6060, INC: 470, MAX: 20160 },
+    { BPS: 16, Year: 2011, MIN: 10000, INC: 800, MAX: 34000 },
+    { BPS: 16, Year: 2015, MIN: 12910, INC: 1035, MAX: 43960 },
+    { BPS: 16, Year: 2016, MIN: 15880, INC: 1280, MAX: 54280 },
+    { BPS: 16, Year: 2017, MIN: 18910, INC: 1520, MAX: 64510 },
+    { BPS: 16, Year: 2022, MIN: 28070, INC: 2260, MAX: 95870 },
+
+    // BPS 17
+    { BPS: 17, Year: 2001, MIN: 6210, INC: 465, MAX: 15510 },
+    { BPS: 17, Year: 2005, MIN: 7140, INC: 535, MAX: 17840 },
+    { BPS: 17, Year: 2007, MIN: 8210, INC: 615, MAX: 20510 },
+    { BPS: 17, Year: 2008, MIN: 9850, INC: 740, MAX: 24650 },
+    { BPS: 17, Year: 2011, MIN: 16000, INC: 1200, MAX: 40000 },
+    { BPS: 17, Year: 2015, MIN: 20680, INC: 1555, MAX: 51780 },
+    { BPS: 17, Year: 2016, MIN: 25440, INC: 1930, MAX: 64040 },
+    { BPS: 17, Year: 2017, MIN: 30370, INC: 2300, MAX: 76370 },
+    { BPS: 17, Year: 2022, MIN: 45070, INC: 3420, MAX: 113470 },
+
+    // BPS 18
+    { BPS: 18, Year: 2001, MIN: 8135, INC: 585, MAX: 19835 },
+    { BPS: 18, Year: 2005, MIN: 9355, INC: 675, MAX: 22855 },
+    { BPS: 18, Year: 2007, MIN: 10760, INC: 775, MAX: 26260 },
+    { BPS: 18, Year: 2008, MIN: 12910, INC: 930, MAX: 31510 },
+    { BPS: 18, Year: 2011, MIN: 20000, INC: 1500, MAX: 50000 },
+    { BPS: 18, Year: 2015, MIN: 25940, INC: 1950, MAX: 64940 },
+    { BPS: 18, Year: 2016, MIN: 31890, INC: 2400, MAX: 79890 },
+    { BPS: 18, Year: 2017, MIN: 38350, INC: 2870, MAX: 95750 },
+    { BPS: 18, Year: 2022, MIN: 56880, INC: 4260, MAX: 142080 },
+
+    // BPS 19
+    { BPS: 19, Year: 2001, MIN: 12400, INC: 615, MAX: 24700 },
+    { BPS: 19, Year: 2005, MIN: 14260, INC: 705, MAX: 28360 },
+    { BPS: 19, Year: 2007, MIN: 16400, INC: 810, MAX: 32600 },
+    { BPS: 19, Year: 2008, MIN: 19680, INC: 970, MAX: 39080 },
+    { BPS: 19, Year: 2011, MIN: 31000, INC: 1600, MAX: 63000 },
+    { BPS: 19, Year: 2015, MIN: 40155, INC: 2075, MAX: 81655 },
+    { BPS: 19, Year: 2016, MIN: 49370, INC: 2560, MAX: 100570 },
+    { BPS: 19, Year: 2017, MIN: 59210, INC: 3050, MAX: 120210 },
+    { BPS: 19, Year: 2022, MIN: 87840, INC: 4530, MAX: 178440 },
+
+    // BPS 20
+    { BPS: 20, Year: 2001, MIN: 14710, INC: 950, MAX: 28010 },
+    { BPS: 20, Year: 2005, MIN: 16915, INC: 1095, MAX: 32245 },
+    { BPS: 20, Year: 2007, MIN: 19455, INC: 1260, MAX: 37095 },
+    { BPS: 20, Year: 2008, MIN: 23345, INC: 1510, MAX: 44485 },
+    { BPS: 20, Year: 2011, MIN: 36000, INC: 2350, MAX: 68900 },
+    { BPS: 20, Year: 2015, MIN: 46705, INC: 3050, MAX: 89405 },
+    { BPS: 20, Year: 2016, MIN: 57410, INC: 3750, MAX: 109910 },
+    { BPS: 20, Year: 2017, MIN: 69090, INC: 4510, MAX: 132230 },
+    { BPS: 20, Year: 2022, MIN: 102470, INC: 6690, MAX: 196130 },
+
+    // BPS 21
+    { BPS: 21, Year: 2001, MIN: 16305, INC: 1070, MAX: 31285 },
+    { BPS: 21, Year: 2005, MIN: 18750, INC: 1230, MAX: 35970 },
+    { BPS: 21, Year: 2007, MIN: 21565, INC: 1415, MAX: 41375 },
+    { BPS: 21, Year: 2008, MIN: 25880, INC: 1700, MAX: 49680 },
+    { BPS: 21, Year: 2011, MIN: 40000, INC: 2600, MAX: 76400 },
+    { BPS: 21, Year: 2015, MIN: 51885, INC: 3375, MAX: 99135 },
+    { BPS: 21, Year: 2016, MIN: 63780, INC: 4150, MAX: 121880 },
+    { BPS: 21, Year: 2017, MIN: 76720, INC: 5000, MAX: 146720 },
+    { BPS: 21, Year: 2022, MIN: 113790, INC: 7365, MAX: 222855 },
+
+    // BPS 22
+    { BPS: 22, Year: 2001, MIN: 17440, INC: 1250, MAX: 34940 },
+    { BPS: 22, Year: 2005, MIN: 20055, INC: 1440, MAX: 40215 },
+    { BPS: 22, Year: 2007, MIN: 23065, INC: 1655, MAX: 46235 },
+    { BPS: 22, Year: 2008, MIN: 27680, INC: 1985, MAX: 55470 },
+    { BPS: 22, Year: 2011, MIN: 43000, INC: 3050, MAX: 85700 },
+    { BPS: 22, Year: 2015, MIN: 55755, INC: 3960, MAX: 111195 },
+    { BPS: 22, Year: 2016, MIN: 68540, INC: 4870, MAX: 136720 },
+    { BPS: 22, Year: 2017, MIN: 82380, INC: 5870, MAX: 164560 },
+    { BPS: 22, Year: 2022, MIN: 122190, INC: 8710, MAX: 244130 },
+];    
+
+function calculateStages(min, inc, max) {
+    let stageArray = [];
+    let currentStage = min; // Start with the minimum value
+
+    // Add stages until the maximum is reached
+    while (currentStage + inc <= max) {
+        currentStage += inc; // Move to next stage
+        stageArray.push(currentStage); // Add to the array
+    }
+
+    return stageArray;
+}
+
+function updateTable() {
+    const year = document.getElementById('year').value;
+    const bps = document.getElementById('bps').value;
+    const tableBody = document.getElementById('payScaleTable').querySelector('tbody');
+    tableBody.innerHTML = ''; // Clear previous rows
+
+    let filteredData = data.filter(item => (year === 'all' || item.Year == year) && (bps === 'all' || item.BPS == bps));
+
+    filteredData.forEach(item => {
+        let stages = item.BPS <= 16 ? 30 : item.BPS <= 19 ? 20 : 14;
+        let stageValues = calculateStages(item.MIN, item.INC, item.MAX);
+        let row = `<tr>
+            <td style="font-weight:bold; color: #FC1919; font-size: 18px">${item.BPS}</td>
+            <td style="font-weight:bold; color: #FB0004">${item.Year}</td>
+            <td style="font-weight:bold; color: #FB0004">${item.MIN}</td> <!-- Initial value is MIN -->
+            <td style="font-weight:bold; color: #FB0004">${item.INC}</td>
+            <td style="font-weight:bold; color: #FB0004">${item.MAX}</td>`;
+        
+        // Start with the Initial value
+        row += `<td>${item.MIN}</td>`;
+        
+        // Add stages to the row
+        stageValues.forEach(value => {
+            row += `<td>${value}</td>`;
+        });
+        
+        // Fill remaining columns with empty values if there are fewer stages than columns
+        for (let i = stageValues.length + 1; i < 30; i++) {
+            row += `<td></td>`; // Adjust to your table column count
+        }
+        
+        row += `</tr>`;
+        tableBody.innerHTML += row;
+    });
+}
+
+
+
+
+
+
+
+    updateTable(); // Initial call to display data
+</script>
+</body>
+</html>
