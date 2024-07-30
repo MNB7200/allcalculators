@@ -61,11 +61,44 @@
             background: #fff;
             color: #ff6f00;
         }
+	/* Ensure the table is displayed with a max-height and scrollable */
+.table-container {
+    max-height: 400px; /* Set a max-height for the container to enable scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #ddd; /* Optional: border around the container */
+}
+
+/* Make the header sticky */
+thead th {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0;
+    background-color: #f4f4f4; /* Background color for visibility */
+    z-index: 1; /* Ensures header is above other content */
+    border-bottom: 2px solid #ddd; /* Optional: border below the header */
+}
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         th, td {
             padding: 12px;
             border: 1px solid #ddd;
