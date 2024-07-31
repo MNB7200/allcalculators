@@ -14,6 +14,7 @@
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f4f4f4;
+            background-image: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
             color: #333;
             padding: 20px;
         }
@@ -22,49 +23,56 @@
             margin: 0 auto;
             background: #fff;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
         }
-        h1 {
+        .title-box {
             text-align: center;
-            color: #007bff;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: linear-gradient(45deg, #f6d365, #fda085);
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .title-box h1 {
+            color: #fff;
             margin-bottom: 10px;
             font-size: 2.5em;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         }
-        h2 {
-            text-align: center;
-            color: #ff5722;
+        .title-box h2 {
+            color: #333;
             margin-bottom: 10px;
             font-size: 1.8em;
             font-weight: normal;
         }
-        h3 {
-            text-align: center;
-            color: #673ab7;
+        .title-box h3 {
+            color: #333;
             margin-bottom: 20px;
             font-size: 1.4em;
             font-style: italic;
+            font-family: 'Times New Roman', Times, serif;
         }
         ul {
             list-style-type: none;
             padding: 0;
         }
         li {
-            margin: 10px 0;
+            margin: 15px 0;
             background: #fff;
             border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
         }
         li:hover {
             transform: translateY(-5px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
         a {
             display: block;
-            padding: 15px;
+            padding: 20px;
             text-decoration: none;
             color: #007bff;
             font-size: 1.2em;
@@ -82,13 +90,13 @@
             .container {
                 padding: 10px;
             }
-            h1 {
+            .title-box h1 {
                 font-size: 2em;
             }
-            h2 {
+            .title-box h2 {
                 font-size: 1.5em;
             }
-            h3 {
+            .title-box h3 {
                 font-size: 1.2em;
             }
             a {
@@ -99,15 +107,17 @@
 </head>
 <body>
     <div class="container">
-        <h1>Automatic Online Calculators</h1>
-        <h2>esedikhan.blogspot.com</h2>
-        <h3>made by Noman Muhammad</h3>
+        <div class="title-box">
+            <h1>Automatic Online Calculators</h1>
+            <h2>esedikhan.blogspot.com</h2>
+            <h3>made by Noman Muhammad</h3>
+        </div>
         <ul>
             <li><a href="Student Age Calculator SSC 20062024.html">Student Age Calculator (Nursery to SSC)</a></li>
             <li><a href="TA Bill with Table.html">TA DA Bill 2024</a></li>
             <li><a href="ARA 2024 and Pension increase calculator.html">ARA 2024 and Pension increase calculator</a></li>
             <li><a href="Income Tax Calculator 2024.html">Income Tax Calculator 2024</a></li>
-            <li><a href="RBPS Chart 30072024.html.html">Revised Basic Pay Scale Charts 2001 to 2022</a></li>
+            <li><a href="RBPS Chart 30072024.html">Revised Basic Pay Scale Charts 2001 to 2022</a></li>
             <!-- Add more links as needed -->
         </ul>
     </div>
