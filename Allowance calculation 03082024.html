@@ -3,18 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Allowance Calculator</title>
+    <title>Allowances Calculator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f5;
             color: #333;
         }
+.animate-charcter
+{
+   text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    #231557 0%,
+    #44107a 29%,
+    #ff1361 67%,
+    #fff800 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 5s linear infinite;
+  display: inline-block;
+      font-size: 40px;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
         h1 {
             text-align: center;
-            color: #4a90e2;
-            margin-top: 20px;
-        }
+            background-size: auto auto;
+	    class="animate-character"
+    
+	}
         .calculator-container {
             width: 80%;
             margin: 20px auto;
@@ -74,7 +103,14 @@
     </style>
 </head>
 <body>
-    <h1>Allowance Calculator</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h1 class="animate-charcter">Adhoc Relief Allowances Calculator Govt: Employees</h1>
+    </div>
+  </div>
+</div>    
+
     <div class="calculator-container">
         <div class="form-group">
             <label for="bps">BPS:</label>
