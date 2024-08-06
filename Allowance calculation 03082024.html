@@ -10,6 +10,20 @@
             background-color: #f0f0f5;
             color: #333;
         }
+		
+.blinking {
+    animation: mymove 2s infinite alternate;
+}
+
+@keyframes mymove {
+    from {opacity:0;}
+    to {opacity: 1;}
+}
+
+
+
+
+
 .animate-charcter
 {
    text-transform: uppercase;
@@ -206,7 +220,7 @@
         </div>
         <button onclick="calculateAllowances()">Calculate</button>
         <div id="results"></div>
-        <button onclick="openAllowancesInfo()" style="color: lightgoldenrodyellow; background-color: lightcoral;">Information and History of Allowances</button>
+        <button onclick="openAllowancesInfo()" class="blinking" style="color: lightgoldenrodyellow; background-color: lightcoral;">Information and History of Allowances</button>
     </div>
     
 
