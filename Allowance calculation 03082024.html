@@ -55,6 +55,57 @@
         .form-group {
             margin-bottom: 15px;
         }
+
+.form-group.compact {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.form-group.compact label {
+    margin-right: 10px;
+    width: 200px; /* Adjust width as needed */
+    text-align: right;
+}
+
+.form-group.compact input,
+.form-group.compact select {
+    width: 150px; /* Adjust width as needed */
+}
+
+.form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .form-group input:focus, .form-group select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        .form-group select {
+            background-color: #e9ecef;
+            color: #495057;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .form-group select option {
+            padding: 10px;
+        }
+        .form-group select option:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+
+
         label {
             display: block;
             font-weight: bold;
@@ -101,6 +152,8 @@
             background-color: #ddd;
         }
     </style>
+
+
 </head>
 <body>
 <div class="container">
@@ -112,20 +165,20 @@
 </div>    
 
     <div class="calculator-container">
-        <div class="form-group">
-            <label for="bps">BPS:</label>
+        <div class="form-group compact">
+            <label for="bps" style="color: blueviolet;">BPS:</label>
             <input type="number" id="bps" name="bps" min="1" max="22" required>
         </div>
-        <div class="form-group">
-            <label for="basicPay">Current Basic Pay:</label>
+        <div class="form-group compact">
+            <label for="basicPay" style="color: blueviolet;">Current Basic Pay:</label>
             <input type="number" id="basicPay" name="basicPay" required>
         </div>
-	<div class="form-group">
-            <label for="MAllowance">Medical Allowance:</label>
+        <div class="form-group compact">
+            <label for="MAllowance" style="color: blueviolet;">Medical Allowance:</label>
             <input type="number" id="MAllowance" name="MAllowance" required>
         </div>
-        <div class="form-group">
-            <label for="allowanceType">Select Allowance to Calculate:</label>
+        <div class="form-group compact">
+            <label for="allowanceType" style="color: blueviolet;">Select Allowance to Calculate:</label>
             <select id="allowanceType" name="allowanceType">
                 <option value="all">All Allowances</option>
                 <option value="adhoc2010">Adhoc Relief Allowance 2010</option>
@@ -139,18 +192,24 @@
                 <option value="adhoc2018">Adhoc Relief Allowance 2018</option>
                 <option value="adhoc2019">Adhoc Relief Allowance 2019</option>
                 <option value="adhoc2021">Adhoc Relief Allowance 2021</option>
-                <option value="adhoc2021">Adhoc Relief Allowance 2022</option>
-		<option value="adhoc2021">Adhoc Relief Allowance 2023</option>
-		<option value="adhoc2021">Adhoc Relief Allowance 2024</option>
-		<option value="medical">Medical Allowance 2015</option>
+                <option value="specialallowancenongazetted">Special Allowance 2021 BPS-7 to 16</option>
+                <option value="specialallowancegazetted">Special Allowance 2021 BPS-17 to 22</option>
+                <option value="teaching">Teaching Allowance 2021</option>
+                <option value="DRA2022">Disparity Reduction Allowance 2022</option>
+                <option value="adhoc2022">Adhoc Relief Allowance 2022</option>
+                <option value="adhoc2023">Adhoc Relief Allowance 2023</option>
+                <option value="adhoc2024">Adhoc Relief Allowance 2024</option>
+                <option value="medical">Medical Allowance 2015</option>
                 <option value="houseRent">House Rent Allowance 2021</option>
                 <option value="conveyance">Conveyance Allowance 2013</option>
             </select>
         </div>
         <button onclick="calculateAllowances()">Calculate</button>
         <div id="results"></div>
+        <button onclick="openAllowancesInfo()" style="color: lightgoldenrodyellow; background-color: lightcoral;">Information and History of Allowances</button>
     </div>
     
+
     <script>
         const payScales2010 = [
             2970, 3035, 3140, 3240, 3340, 3430, 3530, 3655, 3820, 3955,
@@ -188,6 +247,25 @@
             5000, 5000
         ];
 
+	const RBPS2017 = [
+	    	9130, 9310, 9610, 9900, 10260, 10620, 10990, 11380, 11770, 12160,
+		12570, 13320, 14260, 15180, 16120, 18910, 30370, 38350, 59210, 69090,
+    		76720, 82380
+	];
+
+	const RBPS2022 = [
+    		13550, 13820, 14260, 14690, 15230, 15760, 16310, 16890, 17470, 18050,
+    		18650, 19770, 21160, 22530, 23920, 28070, 45070, 56880, 87840, 102470,
+    		113790, 122190
+	];
+
+
+function openAllowancesInfo() {
+            window.open('allowances_info.html', '_blank');
+        }
+
+
+
         function getPay(bps, scale) {
             return scale[bps - 1];
         }
@@ -203,47 +281,47 @@
             if (allowanceType === 'all' || allowanceType === 'adhoc2010') {
                 const adhoc2010_existing = basicPay * 0.5;
 		const adhoc2010_new = getPay(bps, payScales2010) * 0.5;
-                resultsHTML += `<tr><td>Adhoc Relief Allowance 2010 @ 50%</td><td>${adhoc2010_existing.toFixed(2)}</td><td>-</td><td>${adhoc2010_new.toFixed(2)}</td><td>-</td></tr>`;
+                resultsHTML += `<tr><td style="font-weight: bold; color: red;">Adhoc Relief Allowance 2010 @ 50%</td><td>${adhoc2010_existing.toFixed(0)}</td><td>-</td><td>${adhoc2010_new.toFixed(0)}</td><td>-</td></tr>`;
             }    
             if (allowanceType === 'all' || allowanceType === 'adhoc2011') {
                 const adhoc2011 = basicPay * 0.15;
 		const adhoc2011_new = getPay(bps, medicalAllowance2015) * 0.15;
-                resultsHTML += `<tr><td>Adhoc Relief Allowance 2011 @ 15%</td><td>${adhoc2011.toFixed(2)}</td><td>-</td><td>${adhoc2011_new.toFixed(2)}</td><td>-</td></tr>`;
+                resultsHTML += `<tr><td style="font-weight: bold; color: red;">Adhoc Relief Allowance 2011 @ 15%</td><td>${adhoc2011.toFixed(0)}</td><td>-</td><td>${adhoc2011_new.toFixed(0)}</td><td>-</td></tr>`;
 	    }	
 
 	    if (allowanceType === 'all' || allowanceType === 'adhoc2012') {
                 const adhoc2012 = basicPay * 0.2;
-                resultsHTML += `<tr><td>Adhoc Relief Allowance 2012 @ 20%</td><td>${adhoc2012.toFixed(2)}</td><td>-</td><td>-</td><td>-</td></tr>`;
+                resultsHTML += `<tr><td style="font-weight: bold; color: red;">Adhoc Relief Allowance 2012 @ 20%</td><td>${adhoc2012.toFixed(0)}</td><td>-</td><td>-</td><td>-</td></tr>`;
             }
             if (allowanceType === 'all' || allowanceType === 'adhoc2013') {
                 const adhoc2013_existing = basicPay * 0.15;
 		const adhoc2013_existingdec = adhoc2013_existing * 0.33333;                
 		const adhoc2013_new = getPay(bps, payScales2015) * 0.10;		
 		const adhoc2013_newdec = adhoc2013_new * 0.33333;
-		resultsHTML += `<tr><td>Adhoc Relief Allowance 2013 @ 15%</td><td>${adhoc2013_existing.toFixed(2)}</td><td>${adhoc2013_existingdec.toFixed(2)}</td><td>${adhoc2013_new.toFixed(2)}</td><td>${adhoc2013_newdec.toFixed(2)}</td></tr>`;
+		resultsHTML += `<tr><td>Adhoc Relief Allowance 2013 @ 15%</td><td>${adhoc2013_existing.toFixed(0)}</td><td>${adhoc2013_existingdec.toFixed(0)}</td><td>${adhoc2013_new.toFixed(2)}</td><td>${adhoc2013_newdec.toFixed(2)}</td></tr>`;
 	    }
             if (allowanceType === 'all' || allowanceType === 'adhoc2014') {
                 const adhoc2014_existing = basicPay * 0.1;
                 const adhoc2014_new = getPay(bps, payScales2015) * 0.1;
-		resultsHTML += `<tr><td>Adhoc Relief Allowance 2014 @ 10%</td><td>${adhoc2014_existing.toFixed(2)}</td><td>-</td><td>${adhoc2014_new.toFixed(2)}</td><td>-</td></tr>`;
+		resultsHTML += `<tr><td style="font-weight: bold; color: red;">Adhoc Relief Allowance 2014 @ 10%</td><td>${adhoc2014_existing.toFixed(0)}</td><td>-</td><td>${adhoc2014_new.toFixed(0)}</td><td>-</td></tr>`;
             }
             if (allowanceType === 'all' || allowanceType === 'adhoc2015') {
                 const adhoc2015 = basicPay * 0.10;
 		const adhoc2015_dec = adhoc2015 * 0.25;                
-		resultsHTML += `<tr><td>Adhoc Relief Allowance 2015 @ 7.5%</td><td>${adhoc2015.toFixed(2)}</td><td>${adhoc2015_dec.toFixed(2)}</td><td>-</td><td>-</td></tr>`;
+		resultsHTML += `<tr><td>Adhoc Relief Allowance 2015 @ 7.5%</td><td>${adhoc2015.toFixed(0)}</td><td>${adhoc2015_dec.toFixed(0)}</td><td>-</td><td>-</td></tr>`;
             }
             if (allowanceType === 'all' || allowanceType === 'adhoc2016') {
                 const adhoc2016 = basicPay * 0.1;
 		const adhoc2016_dec = getPay(bps, ARA2016) * 0.1;                
-		resultsHTML += `<tr><td>Adhoc Relief Allowance 2016 @ 10%</td><td>${adhoc2016.toFixed(2)}</td><td>-</td><td>${adhoc2016_dec.toFixed(2)}</td><td>-</td></tr>`;
+		resultsHTML += `<tr><td style="font-weight: bold; color: red;">Adhoc Relief Allowance 2016 @ 10%</td><td>${adhoc2016.toFixed(0)}</td><td>-</td><td>${adhoc2016_dec.toFixed(0)}</td><td>-</td></tr>`;
             }
             if (allowanceType === 'all' || allowanceType === 'adhoc2017') {
                 const adhoc2017 = basicPay * 0.1;
-                resultsHTML += `<tr><td>Adhoc Relief Allowance 2017 @ 10%</td><td>${adhoc2017.toFixed(2)}</td><td>-</td><td>-</td><td>-</td></tr>`;
+                resultsHTML += `<tr><td style="font-weight: bold; color: red;">Adhoc Relief Allowance 2017 @ 10%</td><td>${adhoc2017.toFixed(0)}</td><td>-</td><td>-</td><td>-</td></tr>`;
             }
             if (allowanceType === 'all' || allowanceType === 'adhoc2018') {
                 const adhoc2018 = basicPay * 0.1;
-                resultsHTML += `<tr><td>Adhoc Relief Allowance 2018 @ 10%</td><td>${adhoc2018.toFixed(2)}</td><td>-</td><td>-</td><td>-</td></tr>`;
+                resultsHTML += `<tr><td style="font-weight: bold; color: red;">Adhoc Relief Allowance 2018 @ 10%</td><td>${adhoc2018.toFixed(0)}</td><td>-</td><td>-</td><td>-</td></tr>`;
             }
             if (allowanceType === 'all' || allowanceType === 'adhoc2019') {
     let adhoc2019;
@@ -254,32 +332,72 @@
     } else {
         adhoc2019 = 0; // No allowance for BPS outside the specified range
     }
-    resultsHTML += `<tr><td>Adhoc Relief Allowance 2019 @ 10%</td><td>${adhoc2019.toFixed(2)}</td><td>-</td><td>-</td><td>-</td></tr>`;
+    resultsHTML += `<tr><td style="font-weight: bold; color: red;">Adhoc Relief Allowance 2019 @ 10%</td><td>${adhoc2019.toFixed(0)}</td><td>-</td><td>-</td><td>-</td></tr>`;
 }
 
 if (allowanceType === 'all' || allowanceType === 'adhoc2021') {
                 const adhoc2021 = basicPay * 0.1;
-                resultsHTML += `<tr><td>Adhoc Relief Allowance 2021 @ 10%</td><td>${adhoc2021.toFixed(2)}</td><td>-</td><td>-</td><td>-</td></tr>`;
+		// Add the new row with merged columns before the existing row, styled to be bold and red
+    		//resultsHTML += `<tr><td colspan="5" style="font-weight: bold; color: red; text-align= left;">Some additional text for context or information</td></tr>`;
+                resultsHTML += `<tr><td>Adhoc Relief Allowance 2021 @ 10%</td><td>${adhoc2021.toFixed(0)}</td><td>-</td><td>-</td><td>-</td></tr>`;
             }
+if (allowanceType === 'all' || allowanceType === 'specialallowancegazetted') {
+    if (bps >= 17 && bps <= 22) {
+        const allowanceRate = 0.2; // 20%
+        const fixedallowance = getPay(bps, RBPS2017) * allowanceRate;
+        resultsHTML += `<tr><td>Special Allowance @ 20% for BPS-17 to BPS-22</td><td>${fixedallowance.toFixed(0)}</td><td>-</td><td>${fixedallowance.toFixed(0)}</td><td>-</td></tr>`;
+    }
+}
+
+if (allowanceType === 'all' || allowanceType === 'specialallowancenongazetted') {
+    if (bps >= 7 && bps <= 16) {
+        const specialAllowance = 3500; // Fixed amount
+        resultsHTML += `<tr><td>Special Allowance BPS-7 to BPS-16</td><td>${specialAllowance}</td><td>-</td><td>${specialAllowance}</td><td>-</td></tr>`;
+    }
+}
+
+
+if (allowanceType === 'all' || allowanceType === 'teaching') {
+    const teachingAllowance = getPay(bps, RBPS2017) * 0.20;
+    resultsHTML += `<tr><td>Teaching Allowance @ 20%</td><td>${teachingAllowance.toFixed(0)}</td><td>-</td><td>-</td><td>-</td></tr>`;
+}
+
+
+// Disparity Reduction Allowance 2022 @ 15%
+if (allowanceType === 'all' || allowanceType === 'DRA2022') {
+    const DRA2022 = basicPay * 0.15;
+    const DRA2022_new = getPay(bps, RBPS2017) * 0.15;
+    resultsHTML += `<tr><td>Disparity Reduction Allowance 2022 @ 15%</td><td>${DRA2022.toFixed(0)}</td><td>-</td><td>${DRA2022_new.toFixed(0)}</td><td>-</td></tr>`;
+}
+
 
 // Adhoc Relief Allowance 2022 @ 15%
 if (allowanceType === 'all' || allowanceType === 'adhoc2022') {
     const adhoc2022 = basicPay * 0.15;
-    resultsHTML += `<tr><td>Adhoc Relief Allowance 2022 @ 15%</td><td>${adhoc2022.toFixed(2)}</td><td>-</td><td>-</td><td>-</td></tr>`;
+    const adhoc2022_new = getPay(bps, RBPS2017) * 0.15;
+    resultsHTML += `<tr><td>Adhoc Relief Allowance 2022 @ 15%</td><td>${adhoc2022.toFixed(0)}</td><td>-</td><td>${adhoc2022_new.toFixed(0)}</td><td>-</td></tr>`;
 }
+
+
 
 // Adhoc Relief Allowance 2023 @ 30% & 35%
 if (allowanceType === 'all' || allowanceType === 'adhoc2023') {
     let adhoc2023;
+    let adhoc2023NewEntrant;
     if (bps >= 1 && bps <= 16) {
         adhoc2023 = basicPay * 0.35; // 35% for BPS-1 to 16
+        adhoc2023NewEntrant = getPay(bps, RBPS2022) * 0.35; // New entrant for BPS-1 to 16
     } else if (bps >= 17 && bps <= 22) {
         adhoc2023 = basicPay * 0.30; // 30% for BPS-17 to 22
+        adhoc2023NewEntrant = getPay(bps, RBPS2022) * 0.30; // New entrant for BPS-17 to 22
     } else {
         adhoc2023 = 0; // No allowance for BPS outside the specified range
+        adhoc2023NewEntrant = 0; // No allowance for new entrants outside the specified range
     }
-    resultsHTML += `<tr><td>Adhoc Relief Allowance 2023 @ ${bps >= 1 && bps <= 16 ? '35%' : '30%'}</td><td>${adhoc2023.toFixed(2)}</td><td>-</td><td>-</td><td>-</td></tr>`;
+    resultsHTML += `<tr><td>Adhoc Relief Allowance 2023 @ ${bps >= 1 && bps <= 16 ? '35%' : '30%'}</td><td>${adhoc2023.toFixed(0)}</td><td>-</td><td>${adhoc2023NewEntrant.toFixed(0)}</td><td>-</td></tr>`;
 }
+
+
 
 // Adhoc Relief Allowance 2024 @ 20% & 25%
 if (allowanceType === 'all' || allowanceType === 'adhoc2024') {
@@ -291,7 +409,7 @@ if (allowanceType === 'all' || allowanceType === 'adhoc2024') {
     } else {
         adhoc2024 = 0; // No allowance for BPS outside the specified range
     }
-    resultsHTML += `<tr><td>Adhoc Relief Allowance 2024 @ ${bps >= 1 && bps <= 16 ? '25%' : '20%'}</td><td>${adhoc2024.toFixed(2)}</td><td>-</td><td>-</td><td>-</td></tr>`;
+    resultsHTML += `<tr><td>Adhoc Relief Allowance 2024 @ ${bps >= 1 && bps <= 16 ? '25%' : '20%'}</td><td>${adhoc2024.toFixed(0)}</td><td>-</td><td>-</td><td>-</td></tr>`;
 }
 
 
@@ -332,11 +450,11 @@ if (allowanceType === 'all' || allowanceType === 'medical') {
 
             if (allowanceType === 'all' || allowanceType === 'houseRent') {
                 const houseRentAllowance = getPay(bps, houseRentAllowance2021);
-                resultsHTML += `<tr><td>House Rent Allowance 2021</td><td>${houseRentAllowance.toFixed(2)}</td><td>-</td><td>-</td><td>-</td></tr>`;
+                resultsHTML += `<tr><td>House Rent Allowance 2021</td><td>${houseRentAllowance.toFixed(0)}</td><td>-</td><td>-</td><td>-</td></tr>`;
             }
             if (allowanceType === 'all' || allowanceType === 'conveyance') {
                 const conveyanceAllowance = getPay(bps, conveyanceAllowance2013);
-                resultsHTML += `<tr><td>Conveyance Allowance 2013</td><td>${conveyanceAllowance.toFixed(2)}</td><td>-</td><td>-</td><td>-</td></tr>`;
+                resultsHTML += `<tr><td>Conveyance Allowance 2013</td><td>${conveyanceAllowance.toFixed(0)}</td><td>-</td><td>-</td><td>-</td></tr>`;
             }
 
             resultsHTML += '</table>';
