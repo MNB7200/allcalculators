@@ -20,7 +20,15 @@
     to {opacity: 1;}
 }
 
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
 
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
 
 
 
@@ -242,11 +250,11 @@
             4115, 4355, 4645, 4920, 5220, 6060, 9850, 12910, 19680, 23345,
             25880, 27680
         ];
-	const ARA2016 = [
+		const ARA2016 = [
     	    7640, 7790, 8040, 8280, 8590, 8900, 9220, 9540, 9860, 10180,
     	    10510, 11140, 11930, 12720, 13510, 15880, 25440, 31890, 49370, 57410,
     	    63780, 68540
-	];
+		];
 
 
         const houseRentAllowance2021 = [
@@ -261,23 +269,26 @@
             5000, 5000
         ];
 
-	const RBPS2017 = [
+		const RBPS2017 = [
 	    	9130, 9310, 9610, 9900, 10260, 10620, 10990, 11380, 11770, 12160,
-		12570, 13320, 14260, 15180, 16120, 18910, 30370, 38350, 59210, 69090,
+			12570, 13320, 14260, 15180, 16120, 18910, 30370, 38350, 59210, 69090,
     		76720, 82380
-	];
+		];
 
-	const RBPS2022 = [
+		const RBPS2022 = [
     		13550, 13820, 14260, 14690, 15230, 15760, 16310, 16890, 17470, 18050,
     		18650, 19770, 21160, 22530, 23920, 28070, 45070, 56880, 87840, 102470,
     		113790, 122190
-	];
+		];
 
 
 function openAllowancesInfo() {
             window.open('allowances_info.html', '_blank');
         }
 
+function handleNaN(value) {
+    return isNaN(value) ? '-' : value.toFixed(0);
+}
 
 
         function getPay(bps, scale) {
@@ -292,52 +303,64 @@ function openAllowancesInfo() {
             let resultsHTML = '<table class="result-table">';
             resultsHTML += '<tr><th>Allowance Type</th><th>Existing Employee Amount</th><th>Amount after Freezing</th><th>New Entrant Amount</th><th>Amount After Freezing</th></tr>';
 
-            if (allowanceType === 'all' || allowanceType === 'adhoc2010') {
-                const adhoc2010_existing = basicPay * 0.5;
-		const adhoc2010_new = getPay(bps, payScales2010) * 0.5;
-                resultsHTML += `<tr><td style="font-weight: bold; color: red;">Adhoc Relief Allowance 2010 @ 50%</td><td>${adhoc2010_existing.toFixed(0)}</td><td>-</td><td>${adhoc2010_new.toFixed(0)}</td><td>-</td></tr>`;
-            }    
-            if (allowanceType === 'all' || allowanceType === 'adhoc2011') {
-                const adhoc2011 = basicPay * 0.15;
-		const adhoc2011_new = getPay(bps, medicalAllowance2015) * 0.15;
-                resultsHTML += `<tr><td style="font-weight: bold; color: red;">Adhoc Relief Allowance 2011 @ 15%</td><td>${adhoc2011.toFixed(0)}</td><td>-</td><td>${adhoc2011_new.toFixed(0)}</td><td>-</td></tr>`;
-	    }	
+function handleNaN(value) {
+    return isNaN(value) ? '-' : value.toFixed(0);
+}
 
-	    if (allowanceType === 'all' || allowanceType === 'adhoc2012') {
-                const adhoc2012 = basicPay * 0.2;
-                resultsHTML += `<tr><td style="font-weight: bold; color: red;">Adhoc Relief Allowance 2012 @ 20%</td><td>${adhoc2012.toFixed(0)}</td><td>-</td><td>-</td><td>-</td></tr>`;
-            }
-            if (allowanceType === 'all' || allowanceType === 'adhoc2013') {
-                const adhoc2013_existing = basicPay * 0.15;
-		const adhoc2013_existingdec = adhoc2013_existing * 0.33333;                
-		const adhoc2013_new = getPay(bps, payScales2015) * 0.10;		
-		const adhoc2013_newdec = adhoc2013_new * 0.33333;
-		resultsHTML += `<tr><td>Adhoc Relief Allowance 2013 @ 15%</td><td>${adhoc2013_existing.toFixed(0)}</td><td>${adhoc2013_existingdec.toFixed(0)}</td><td>${adhoc2013_new.toFixed(2)}</td><td>${adhoc2013_newdec.toFixed(2)}</td></tr>`;
-	    }
-            if (allowanceType === 'all' || allowanceType === 'adhoc2014') {
-                const adhoc2014_existing = basicPay * 0.1;
-                const adhoc2014_new = getPay(bps, payScales2015) * 0.1;
-		resultsHTML += `<tr><td style="font-weight: bold; color: red;">Adhoc Relief Allowance 2014 @ 10%</td><td>${adhoc2014_existing.toFixed(0)}</td><td>-</td><td>${adhoc2014_new.toFixed(0)}</td><td>-</td></tr>`;
-            }
-            if (allowanceType === 'all' || allowanceType === 'adhoc2015') {
-                const adhoc2015 = basicPay * 0.10;
-		const adhoc2015_dec = adhoc2015 * 0.25;                
-		resultsHTML += `<tr><td>Adhoc Relief Allowance 2015 @ 7.5%</td><td>${adhoc2015.toFixed(0)}</td><td>${adhoc2015_dec.toFixed(0)}</td><td>-</td><td>-</td></tr>`;
-            }
-            if (allowanceType === 'all' || allowanceType === 'adhoc2016') {
-                const adhoc2016 = basicPay * 0.1;
-		const adhoc2016_dec = getPay(bps, ARA2016) * 0.1;                
-		resultsHTML += `<tr><td style="font-weight: bold; color: red;">Adhoc Relief Allowance 2016 @ 10%</td><td>${adhoc2016.toFixed(0)}</td><td>-</td><td>${adhoc2016_dec.toFixed(0)}</td><td>-</td></tr>`;
-            }
-            if (allowanceType === 'all' || allowanceType === 'adhoc2017') {
-                const adhoc2017 = basicPay * 0.1;
-                resultsHTML += `<tr><td style="font-weight: bold; color: red;">Adhoc Relief Allowance 2017 @ 10%</td><td>${adhoc2017.toFixed(0)}</td><td>-</td><td>-</td><td>-</td></tr>`;
-            }
-            if (allowanceType === 'all' || allowanceType === 'adhoc2018') {
-                const adhoc2018 = basicPay * 0.1;
-                resultsHTML += `<tr><td style="font-weight: bold; color: red;">Adhoc Relief Allowance 2018 @ 10%</td><td>${adhoc2018.toFixed(0)}</td><td>-</td><td>-</td><td>-</td></tr>`;
-            }
-            if (allowanceType === 'all' || allowanceType === 'adhoc2019') {
+if (allowanceType === 'all' || allowanceType === 'adhoc2010') {
+    const adhoc2010_existing = basicPay * 0.5;
+    const adhoc2010_new = getPay(bps, payScales2010) * 0.5;
+    resultsHTML += `<tr><td style="font-weight: bold; color: red;">Adhoc Relief Allowance 2010 @ 50%</td><td>${handleNaN(adhoc2010_existing)}</td><td>-</td><td>${handleNaN(adhoc2010_new)}</td><td>-</td></tr>`;
+}    
+
+if (allowanceType === 'all' || allowanceType === 'adhoc2011') {
+    const adhoc2011 = basicPay * 0.15;
+    const adhoc2011_new = getPay(bps, medicalAllowance2015) * 0.15;
+    resultsHTML += `<tr><td style="font-weight: bold; color: red;">Adhoc Relief Allowance 2011 @ 15%</td><td>${handleNaN(adhoc2011)}</td><td>-</td><td>${handleNaN(adhoc2011_new)}</td><td>-</td></tr>`;
+}	
+
+if (allowanceType === 'all' || allowanceType === 'adhoc2012') {
+    const adhoc2012 = basicPay * 0.2;
+    resultsHTML += `<tr><td style="font-weight: bold; color: red;">Adhoc Relief Allowance 2012 @ 20%</td><td>${handleNaN(adhoc2012)}</td><td>-</td><td>-</td><td>-</td></tr>`;
+}
+
+if (allowanceType === 'all' || allowanceType === 'adhoc2013') {
+    const adhoc2013_existing = basicPay * 0.15;
+    const adhoc2013_existingdec = adhoc2013_existing * 0.33333;                
+    const adhoc2013_new = getPay(bps, payScales2015) * 0.10;		
+    const adhoc2013_newdec = adhoc2013_new * 0.33333;
+    resultsHTML += `<tr><td>Adhoc Relief Allowance 2013 @ 15%</td><td>${handleNaN(adhoc2013_existing)}</td><td>${handleNaN(adhoc2013_existingdec)}</td><td>${handleNaN(adhoc2013_new)}</td><td>${handleNaN(adhoc2013_newdec)}</td></tr>`;
+}
+
+if (allowanceType === 'all' || allowanceType === 'adhoc2014') {
+    const adhoc2014_existing = basicPay * 0.1;
+    const adhoc2014_new = getPay(bps, payScales2015) * 0.1;
+    resultsHTML += `<tr><td style="font-weight: bold; color: red;">Adhoc Relief Allowance 2014 @ 10%</td><td>${handleNaN(adhoc2014_existing)}</td><td>-</td><td>${handleNaN(adhoc2014_new)}</td><td>-</td></tr>`;
+}
+
+if (allowanceType === 'all' || allowanceType === 'adhoc2015') {
+    const adhoc2015 = basicPay * 0.10;
+    const adhoc2015_dec = adhoc2015 * 0.25;                
+    resultsHTML += `<tr><td>Adhoc Relief Allowance 2015 @ 7.5%</td><td>${handleNaN(adhoc2015)}</td><td>${handleNaN(adhoc2015_dec)}</td><td>-</td><td>-</td></tr>`;
+}
+
+if (allowanceType === 'all' || allowanceType === 'adhoc2016') {
+    const adhoc2016 = basicPay * 0.1;
+    const adhoc2016_dec = getPay(bps, ARA2016) * 0.1;                
+    resultsHTML += `<tr><td style="font-weight: bold; color: red;">Adhoc Relief Allowance 2016 @ 10%</td><td>${handleNaN(adhoc2016)}</td><td>-</td><td>${handleNaN(adhoc2016_dec)}</td><td>-</td></tr>`;
+}
+
+if (allowanceType === 'all' || allowanceType === 'adhoc2017') {
+    const adhoc2017 = basicPay * 0.1;
+    resultsHTML += `<tr><td style="font-weight: bold; color: red;">Adhoc Relief Allowance 2017 @ 10%</td><td>${handleNaN(adhoc2017)}</td><td>-</td><td>-</td><td>-</td></tr>`;
+}
+
+if (allowanceType === 'all' || allowanceType === 'adhoc2018') {
+    const adhoc2018 = basicPay * 0.1;
+    resultsHTML += `<tr><td style="font-weight: bold; color: red;">Adhoc Relief Allowance 2018 @ 10%</td><td>${handleNaN(adhoc2018)}</td><td>-</td><td>-</td><td>-</td></tr>`;
+}
+
+if (allowanceType === 'all' || allowanceType === 'adhoc2019') {
     let adhoc2019;
     if (bps >= 1 && bps <= 16) {
         adhoc2019 = basicPay * 0.10; // 10% for BPS-1 to 16
@@ -346,53 +369,48 @@ function openAllowancesInfo() {
     } else {
         adhoc2019 = 0; // No allowance for BPS outside the specified range
     }
-    resultsHTML += `<tr><td style="font-weight: bold; color: red;">Adhoc Relief Allowance 2019 @ 10%</td><td>${adhoc2019.toFixed(0)}</td><td>-</td><td>-</td><td>-</td></tr>`;
+    resultsHTML += `<tr><td style="font-weight: bold; color: red;">Adhoc Relief Allowance 2019 @ 10%</td><td>${handleNaN(adhoc2019)}</td><td>-</td><td>-</td><td>-</td></tr>`;
 }
 
 if (allowanceType === 'all' || allowanceType === 'adhoc2021') {
-                const adhoc2021 = basicPay * 0.1;
-		// Add the new row with merged columns before the existing row, styled to be bold and red
-    		//resultsHTML += `<tr><td colspan="5" style="font-weight: bold; color: red; text-align= left;">Some additional text for context or information</td></tr>`;
-                resultsHTML += `<tr><td>Adhoc Relief Allowance 2021 @ 10%</td><td>${adhoc2021.toFixed(0)}</td><td>-</td><td>-</td><td>-</td></tr>`;
-            }
+    const adhoc2021 = basicPay * 0.1;
+    resultsHTML += `<tr><td>Adhoc Relief Allowance 2021 @ 10%</td><td>${handleNaN(adhoc2021)}</td><td>-</td><td>-</td><td>-</td></tr>`;
+}
+
 if (allowanceType === 'all' || allowanceType === 'specialallowancegazetted') {
     if (bps >= 17 && bps <= 22) {
         const allowanceRate = 0.2; // 20%
         const fixedallowance = getPay(bps, RBPS2017) * allowanceRate;
-        resultsHTML += `<tr><td>Special Allowance @ 20% for BPS-17 to BPS-22</td><td>${fixedallowance.toFixed(0)}</td><td>-</td><td>${fixedallowance.toFixed(0)}</td><td>-</td></tr>`;
+        resultsHTML += `<tr><td>Special Allowance @ 20% for BPS-17 to BPS-22</td><td>${handleNaN(fixedallowance)}</td><td>-</td><td>${handleNaN(fixedallowance)}</td><td>-</td></tr>`;
     }
 }
 
 if (allowanceType === 'all' || allowanceType === 'specialallowancenongazetted') {
     if (bps >= 7 && bps <= 16) {
         const specialAllowance = 3500; // Fixed amount
-        resultsHTML += `<tr><td>Special Allowance BPS-7 to BPS-16</td><td>${specialAllowance}</td><td>-</td><td>${specialAllowance}</td><td>-</td></tr>`;
+        resultsHTML += `<tr><td>Special Allowance BPS-7 to BPS-16</td><td>${handleNaN(specialAllowance)}</td><td>-</td><td>${handleNaN(specialAllowance)}</td><td>-</td></tr>`;
     }
 }
 
-
 if (allowanceType === 'all' || allowanceType === 'teaching') {
     const teachingAllowance = getPay(bps, RBPS2017) * 0.20;
-    resultsHTML += `<tr><td>Teaching Allowance @ 20%</td><td>${teachingAllowance.toFixed(0)}</td><td>-</td><td>-</td><td>-</td></tr>`;
+	const teachingAllowance_new = getPay(bps, RBPS2017) * 0.20;
+    resultsHTML += `<tr><td>Teaching Allowance @ 20%</td><td>${handleNaN(teachingAllowance)}</td><td>-</td><td>${handleNaN(teachingAllowance_new)}</td><td>-</td></tr>`;
 }
-
 
 // Disparity Reduction Allowance 2022 @ 15%
 if (allowanceType === 'all' || allowanceType === 'DRA2022') {
     const DRA2022 = basicPay * 0.15;
     const DRA2022_new = getPay(bps, RBPS2017) * 0.15;
-    resultsHTML += `<tr><td>Disparity Reduction Allowance 2022 @ 15%</td><td>${DRA2022.toFixed(0)}</td><td>-</td><td>${DRA2022_new.toFixed(0)}</td><td>-</td></tr>`;
+    resultsHTML += `<tr><td>Disparity Reduction Allowance 2022 @ 15%</td><td>${handleNaN(DRA2022)}</td><td>-</td><td>${handleNaN(DRA2022_new)}</td><td>-</td></tr>`;
 }
-
 
 // Adhoc Relief Allowance 2022 @ 15%
 if (allowanceType === 'all' || allowanceType === 'adhoc2022') {
     const adhoc2022 = basicPay * 0.15;
     const adhoc2022_new = getPay(bps, RBPS2017) * 0.15;
-    resultsHTML += `<tr><td>Adhoc Relief Allowance 2022 @ 15%</td><td>${adhoc2022.toFixed(0)}</td><td>-</td><td>${adhoc2022_new.toFixed(0)}</td><td>-</td></tr>`;
+    resultsHTML += `<tr><td>Adhoc Relief Allowance 2022 @ 15%</td><td>${handleNaN(adhoc2022)}</td><td>-</td><td>${handleNaN(adhoc2022_new)}</td><td>-</td></tr>`;
 }
-
-
 
 // Adhoc Relief Allowance 2023 @ 30% & 35%
 if (allowanceType === 'all' || allowanceType === 'adhoc2023') {
@@ -408,10 +426,8 @@ if (allowanceType === 'all' || allowanceType === 'adhoc2023') {
         adhoc2023 = 0; // No allowance for BPS outside the specified range
         adhoc2023NewEntrant = 0; // No allowance for new entrants outside the specified range
     }
-    resultsHTML += `<tr><td>Adhoc Relief Allowance 2023 @ ${bps >= 1 && bps <= 16 ? '35%' : '30%'}</td><td>${adhoc2023.toFixed(0)}</td><td>-</td><td>${adhoc2023NewEntrant.toFixed(0)}</td><td>-</td></tr>`;
+    resultsHTML += `<tr><td>Adhoc Relief Allowance 2023 @ ${bps >= 1 && bps <= 16 ? '35%' : '30%'}</td><td>${handleNaN(adhoc2023)}</td><td>-</td><td>${handleNaN(adhoc2023NewEntrant)}</td><td>-</td></tr>`;
 }
-
-
 
 // Adhoc Relief Allowance 2024 @ 20% & 25%
 if (allowanceType === 'all' || allowanceType === 'adhoc2024') {
@@ -423,8 +439,11 @@ if (allowanceType === 'all' || allowanceType === 'adhoc2024') {
     } else {
         adhoc2024 = 0; // No allowance for BPS outside the specified range
     }
-    resultsHTML += `<tr><td>Adhoc Relief Allowance 2024 @ ${bps >= 1 && bps <= 16 ? '25%' : '20%'}</td><td>${adhoc2024.toFixed(0)}</td><td>-</td><td>-</td><td>-</td></tr>`;
+
+    // Use the universal handleNaN function
+    resultsHTML += `<tr><td>Adhoc Relief Allowance 2024 @ ${bps >= 1 && bps <= 16 ? '25%' : '20%'}</td><td>${handleNaN(adhoc2024)}</td><td>-</td><td>-</td><td>-</td></tr>`;
 }
+
 
 
             
