@@ -223,19 +223,19 @@
     <!-- Result Table -->
     <table class="result-table">
         <tr>
-            <th>Next Above + Premature Increment</th>
+            <th>Next Above</th>
             <td id="newPay"></td>
         </tr>
         <tr>
-            <th>Pay Increase</th>
+            <th for="benefit">Pay Increase</th>
             <td id="benefit"></td>
         </tr>
         <tr>
-            <th>Rate of Increment</th>
+            <th>Rate of Increment (Higher Scale)</th>
             <td id="rateOfIncrement"></td>
         </tr>
         <tr>
-            <th>Fixed Pay</th>
+            <th>Fixed Pay (Next Above + Premature Increment)</th>
             <td id="finalPay"></td>
         </tr>
     </table>
@@ -512,23 +512,17 @@ function calculatePay() {
     let rateOfIncrement = promotedScale.INC;
     let finalPay = newPay;
 
-    if (withOption) {
-        let adjustedCurrentPay = currentPay;
-        
-        // Check if the current pay is at the maximum of the current scale
-        if (currentPay >= currentScale.MAX) {
-            adjustedCurrentPay += currentScale.INC; // Add one increment if at max
-        }
-
-        const nextStepInCurrent = calculateNextAbove(adjustedCurrentPay, currentScale);
-        const newPayInCurrent = nextStepInCurrent > adjustedCurrentPay ? nextStepInCurrent : adjustedCurrentPay;
-        newPay = calculateNextAbove(newPayInCurrent, promotedScale);
-        benefit = newPay - newPayInCurrent;
-
-        if (benefit <= rateOfIncrement) {
-            finalPay = newPay + rateOfIncrement;
+if (withOption) {
+        if (currentBps === promotedBps) {
+            finalPay = currentPay + 2 * currentScale.INC;
         } else {
-            finalPay = newPay; // This ensures finalPay is correctly set when benefit > rateOfIncrement
+            const nextStepInCurrent = calculateNextAbove(currentPay, currentScale);
+            const newPayInCurrent = nextStepInCurrent > currentPay ? nextStepInCurrent : currentPay;
+            newPay = calculateNextAbove(newPayInCurrent, promotedScale);
+            benefit = newPay - newPayInCurrent;
+            if (benefit <= rateOfIncrement) {
+                finalPay = newPay + rateOfIncrement;
+            }
         }
     } else {
         if (benefit <= rateOfIncrement) {
@@ -536,8 +530,22 @@ function calculatePay() {
         }
     }
 
+
+// Update the benefit field
+    const benefitElement = document.getElementById("benefit");
+    const benefitLabel = document.querySelector("th[for='benefit']");
+    
+    if (benefit < rateOfIncrement) {
+        benefitElement.style.color = "red";
+        benefitLabel.textContent = "Pay Increase (Benefit is less)";
+    } else {
+        benefitElement.style.color = "black";
+        benefitLabel.textContent = "Pay Increase";
+    }
+	
+	
     document.getElementById("newPay").textContent = newPay;
-    document.getElementById("benefit").textContent = benefit;
+    benefitElement.textContent = benefit;
     document.getElementById("rateOfIncrement").textContent = rateOfIncrement;
     document.getElementById("finalPay").textContent = finalPay;
 }
