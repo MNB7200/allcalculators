@@ -159,10 +159,17 @@
         <option value="2022">2022</option>
     </select>
 </div>
-        <div class="input-group">
-            <label for="currentPay">Current Pay</label>
-            <input type="number" id="currentPay">
-        </div>
+        <div class="pay-container">
+    <div class="dropdown-container">
+        <label for="currentPay">Select Current Pay:</label>
+        <select id="currentPay" onchange="updateStageLabel()">
+            <!-- Options will be populated by JavaScript -->
+        </select>
+        <label id="stageLabel">Minimum Pay (Stage 0)</label>
+    </div>
+</div>
+
+
     </div>
     
     <!-- Second Row of Input Fields -->
@@ -211,8 +218,8 @@
         <div class="input-group">
             <label for="withOption">With Option</label>
             <select id="withOption">
-                <option value="yes">Yes</option>
                 <option value="no">No</option>
+				<option value="yes">Yes</option>
             </select>
         </div>
     </div>
@@ -487,6 +494,98 @@
     { BPS: 22, Year: 2022, MIN: 122190, INC: 8710, MAX: 244130 },
     ];
 
+
+
+
+function populatePayDropdown() {
+    const currentBps = parseInt(document.getElementById("currentBps").value);
+    const currentYear = parseInt(document.getElementById("currentYear").value);
+    const currentPayDropdown = document.getElementById("currentPay");
+
+    const currentScale = data.find(entry => entry.BPS === currentBps && entry.Year === currentYear);
+
+    // Clear previous options
+    currentPayDropdown.innerHTML = "";
+
+    // Populate the dropdown with pay steps
+    for (let i = currentScale.MIN + currentScale.INC, stage = 1; i <= currentScale.MAX; i += currentScale.INC, stage++) {
+        const option = document.createElement("option");
+        option.value = i;
+        option.textContent = `${i} (Stage ${stage})`;
+        option.dataset.stage = stage; // Store stage in data attribute
+        currentPayDropdown.appendChild(option);
+    }
+
+    // Update stage label when a pay is selected
+    currentPayDropdown.addEventListener("change", updatePayStageLabel);
+}
+
+function updatePayStageLabel() {
+    const currentPayDropdown = document.getElementById("currentPay");
+    const selectedOption = currentPayDropdown.options[currentPayDropdown.selectedIndex];
+    const selectedStage = selectedOption.dataset.stage;
+
+    document.getElementById("payStage").textContent = `${selectedStage} Stage`;
+}
+
+// Add event listeners to populate the pay dropdown when BPS or Year changes
+document.getElementById("currentBps").addEventListener("change", populatePayDropdown);
+document.getElementById("currentYear").addEventListener("change", populatePayDropdown);
+
+
+
+
+function updateCurrentPayList() {
+    const currentBps = parseInt(document.getElementById("currentBps").value);
+    const currentYear = parseInt(document.getElementById("currentYear").value);
+    const currentScale = data.find(entry => entry.BPS === currentBps && entry.Year === currentYear);
+
+    const payDropdown = document.getElementById("currentPay");
+    payDropdown.innerHTML = '';
+
+    // Add the minimum pay as the first option with stage 0
+    const minOption = document.createElement("option");
+    minOption.value = currentScale.MIN;
+    minOption.text = `${currentScale.MIN}`;
+    minOption.dataset.stage = "0"; // Stage 0 for minimum pay
+    payDropdown.appendChild(minOption);
+
+    // Add increments above the minimum pay
+    let stage = 1;
+    for (let i = currentScale.MIN + currentScale.INC; i <= currentScale.MAX; i += currentScale.INC) {
+        const option = document.createElement("option");
+        option.value = i;
+        option.text = `${i}`;
+        option.dataset.stage = stage;
+        payDropdown.appendChild(option);
+        stage++;
+    }
+}
+
+function updateStageLabel() {
+    const selectedOption = document.getElementById("currentPay").selectedOptions[0];
+    const stage = selectedOption.dataset.stage;
+
+    const stageLabel = stage === "0" ? "Minimum Pay (Stage 0)" : `Stage ${stage}`;
+    document.getElementById("stageLabel").textContent = `${stageLabel}`;
+}
+
+// Ensure to call updateCurrentPayList() when BPS or Year is changed
+document.getElementById("currentBps").addEventListener("change", updateCurrentPayList);
+document.getElementById("currentYear").addEventListener("change", updateCurrentPayList);
+
+// Initialize dropdown on page load
+window.onload = updateCurrentPayList;
+
+
+
+
+
+
+
+
+
+
 function calculateNextAbove(currentPay, scaleData) {
     for (let i = scaleData.MIN; i <= scaleData.MAX; i += scaleData.INC) {
         if (i > currentPay) {
@@ -499,7 +598,7 @@ function calculateNextAbove(currentPay, scaleData) {
 function calculatePay() {
     const currentBps = parseInt(document.getElementById("currentBps").value);
     const currentYear = parseInt(document.getElementById("currentYear").value);
-    const currentPay = parseInt(document.getElementById("currentPay").value);
+    const currentPay = parseInt(document.getElementById("currentPay").value); // Use selected pay
     const promotedBps = parseInt(document.getElementById("promotedBps").value);
     const promotedYear = parseInt(document.getElementById("promotedYear").value);
     const withOption = document.getElementById("withOption").value === "yes";
@@ -512,9 +611,10 @@ function calculatePay() {
     let rateOfIncrement = promotedScale.INC;
     let finalPay = newPay;
 
-if (withOption) {
+    if (withOption) {
         if (currentBps === promotedBps) {
-            finalPay = currentPay + 2 * currentScale.INC;
+            // Three increments with option
+            finalPay = currentPay + 3 * currentScale.INC;
         } else {
             const nextStepInCurrent = calculateNextAbove(currentPay, currentScale);
             const newPayInCurrent = nextStepInCurrent > currentPay ? nextStepInCurrent : currentPay;
@@ -525,10 +625,17 @@ if (withOption) {
             }
         }
     } else {
-        if (benefit <= rateOfIncrement) {
-            finalPay = newPay + rateOfIncrement;
+        if (currentBps === promotedBps) {
+            // Two increments without option
+            finalPay = currentPay + 2 * currentScale.INC;
+        } else {
+            if (benefit <= rateOfIncrement) {
+                finalPay = newPay + rateOfIncrement;
+            }
         }
     }
+
+
 
 
 // Update the benefit field
