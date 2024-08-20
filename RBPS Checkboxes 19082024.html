@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revised Basic Pay Scales Charts (RBPS)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        
+        .container:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #770066;
+            margin-bottom: 0px;
+            padding: 0px;
+            line-height: 25px;
+            font-size: 2em;
+        }
+        h2 {
+            text-align: center;
+            color: #b00b69;
+            margin-bottom: 30px;
+            line-height: 0px;
+            font-size: 18px;
+        }
+		
+		
+
+.checkbox-container {
+    display: flex;
+    gap: 10px; /* Space between the two big boxes */
+    margin-top: 10px; /* Space between the headers and checkboxes */
+}
+
+.big-box {
+    border: 2px solid #ccc; /* Border around each big box */
+    border-radius: 10px;
+    padding: 5px;
+    background-color: #f9f9f9; /* Light background color for better contrast */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+}
+
+.checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* Arrange checkboxes in 7 columns */
+    gap: 5px;
+}
+
+.checkbox-group label {
+    border: 1px solid #ccc; /* Border around each checkbox and label */
+    border-radius: 8px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between checkbox and label */
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for each checkbox */
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    border-radius: 4px; /* Rounded edges for checkboxes */
+    cursor: pointer;
+    appearance: none;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    position: relative;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.checkbox-group input[type="checkbox"]:checked {
+    background-color: red; /* Red background when checkbox is checked */
+    border-color: red;
+}
+
+.checkbox-group input[type="checkbox"]:checked::after {
+    content: \2022; /* White tick mark */
+    color: white;
+    font-size: 12px;
+    position: absolute;
+    top: -2px;
+    left: 2px;
+    font-weight: bold;
+    display: block;
+}
+
+
+
+        .table-container {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+        }
+        thead th {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            background-color: #f4f4f4;
+            z-index: 1;
+            border-bottom: 2px solid #ddd;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: middle;
+        }
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #fafafa;
+            height: auto;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+            height: auto;
+        }
+        @media (max-width: 768px) {
+            .checkbox-container {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Revised Basic Pay Scales Charts (RBPS)</h1>
+        <h2>esedikhan.blogspot.com ΞΞΞ made by Noman Muhammad</h2>
+        <div class="checkbox-container">
+    <!-- RBPS Year Checkboxes -->
+	<div class="big-box">
+        <h3>Select RBPS Years</h3>
+    <div class="checkbox-group year-group">
+        <label><input type="checkbox" value="2001" class="year-checkbox" onchange="updateTable()"> 2001</label>
+        <label><input type="checkbox" value="2005" class="year-checkbox" onchange="updateTable()"> 2005</label>
+        <label><input type="checkbox" value="2007" class="year-checkbox" onchange="updateTable()"> 2007</label>
+        <label><input type="checkbox" value="2008" class="year-checkbox" onchange="updateTable()"> 2008</label>
+        <label><input type="checkbox" value="2011" class="year-checkbox" onchange="updateTable()"> 2011</label>
+        <label><input type="checkbox" value="2015" class="year-checkbox" onchange="updateTable()"> 2015</label>
+        <label><input type="checkbox" value="2016" class="year-checkbox" onchange="updateTable()"> 2016</label>
+        <label><input type="checkbox" value="2017" class="year-checkbox" onchange="updateTable()"> 2017</label>
+        <label><input type="checkbox" value="2022" class="year-checkbox" onchange="updateTable()"> 2022</label>
+    </div>
+	</div>
+    <!-- BPS Checkboxes -->
+	<div class="big-box">
+        <h3>Select BPS</h3>
+    <div class="checkbox-group bps-group">
+        <label><input type="checkbox" value="1" class="bps-checkbox" onchange="updateTable()"> BPS-1</label>
+        <label><input type="checkbox" value="2" class="bps-checkbox" onchange="updateTable()"> BPS-2</label>
+        <label><input type="checkbox" value="3" class="bps-checkbox" onchange="updateTable()"> BPS-3</label>
+        <label><input type="checkbox" value="4" class="bps-checkbox" onchange="updateTable()"> BPS-4</label>
+        <label><input type="checkbox" value="5" class="bps-checkbox" onchange="updateTable()"> BPS-5</label>
+        <label><input type="checkbox" value="6" class="bps-checkbox" onchange="updateTable()"> BPS-6</label>
+        <label><input type="checkbox" value="7" class="bps-checkbox" onchange="updateTable()"> BPS-7</label>
+        <label><input type="checkbox" value="8" class="bps-checkbox" onchange="updateTable()"> BPS-8</label>
+        <label><input type="checkbox" value="9" class="bps-checkbox" onchange="updateTable()"> BPS-9</label>
+        <label><input type="checkbox" value="10" class="bps-checkbox" onchange="updateTable()"> BPS-10</label>
+        <label><input type="checkbox" value="11" class="bps-checkbox" onchange="updateTable()"> BPS-11</label>
+        <label><input type="checkbox" value="12" class="bps-checkbox" onchange="updateTable()"> BPS-12</label>
+        <label><input type="checkbox" value="13" class="bps-checkbox" onchange="updateTable()"> BPS-13</label>
+        <label><input type="checkbox" value="14" class="bps-checkbox" onchange="updateTable()"> BPS-14</label>
+        <label><input type="checkbox" value="15" class="bps-checkbox" onchange="updateTable()"> BPS-15</label>
+        <label><input type="checkbox" value="16" class="bps-checkbox" onchange="updateTable()"> BPS-16</label>
+        <label><input type="checkbox" value="17" class="bps-checkbox" onchange="updateTable()"> BPS-17</label>
+        <label><input type="checkbox" value="18" class="bps-checkbox" onchange="updateTable()"> BPS-18</label>
+        <label><input type="checkbox" value="19" class="bps-checkbox" onchange="updateTable()"> BPS-19</label>
+        <label><input type="checkbox" value="20" class="bps-checkbox" onchange="updateTable()"> BPS-20</label>
+        <label><input type="checkbox" value="21" class="bps-checkbox" onchange="updateTable()"> BPS-21</label>
+        <label><input type="checkbox" value="22" class="bps-checkbox" onchange="updateTable()"> BPS-22</label>
+    </div>
+	</div>
+</div>
+        <table id="payScaleTable">
+            <thead>
+                <tr>
+                    <th>BPS</th>
+                    <th>Year</th>
+                    <th>MIN.</th>
+                    <th>INC.</th>
+                    <th>MAX.</th>
+                    <th>Initial</th>
+                    <th>1st</th>
+                    <th>2nd</th>
+                    <th>3rd</th>
+                    <th>4th</th>
+                    <th>5th</th>
+                    <th>6th</th>
+                    <th>7th</th>
+                    <th>8th</th>
+                    <th>9th</th>
+                    <th>10th</th>
+                    <th>11th</th>
+                    <th>12th</th>
+                    <th>13th</th>
+                    <th>14th</th>
+                    <th>15th</th>
+                    <th>16th</th>
+                    <th>17th</th>
+                    <th>18th</th>
+                    <th>19th</th>
+                    <th>20th</th>
+                    <th>21st</th>
+                    <th>22nd</th>
+                    <th>23rd</th>
+                    <th>24th</th>
+                    <th>25th</th>
+                    <th>26th</th>
+                    <th>27th</th>
+                    <th>28th</th>
+                    <th>29th</th>
+                    <th>30th</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table rows will be dynamically generated -->
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function updateTable() {
+            const selectedYears = Array.from(document.querySelectorAll('.year-checkbox:checked')).map(cb => cb.value);
+            const selectedBPS = Array.from(document.querySelectorAll('.bps-checkbox:checked')).map(cb => cb.value);
+
+            const tableBody = document.querySelector("#payScaleTable tbody");
+            tableBody.innerHTML = "";
+
+            // Dummy data representing the pay scales
+            const payScales = {
+                "2001": {
+"1":{"MIN": 1870, "INC": 55, "MAX": 3520 },
+"2":{"MIN": 1915, "INC": 65, "MAX": 3865 },
+"3":{"MIN": 1980, "INC": 75, "MAX": 4230 },
+"4":{"MIN": 2040, "INC": 85, "MAX": 4590 },
+"5":{"MIN": 2100, "INC": 100, "MAX": 5100 },
+"6":{"MIN": 2160, "INC": 110, "MAX": 5460 },
+"7":{"MIN": 2220, "INC": 120, "MAX": 5820 },
+"8":{"MIN": 2310, "INC": 130, "MAX": 6210 },
+"9":{"MIN": 2410, "INC": 145, "MAX": 6760 },
+"10":{"MIN": 2490, "INC": 160, "MAX": 7290 },
+"11":{"MIN": 2590, "INC": 175, "MAX": 7840 },
+"12":{"MIN": 2745, "INC": 195, "MAX": 8595 },
+"13":{"MIN": 2925, "INC": 215, "MAX": 9375 },
+"14":{"MIN": 3100, "INC": 240, "MAX": 10300 },
+"15":{"MIN": 3285, "INC": 265, "MAX": 11235 },
+"16":{"MIN": 3805, "INC": 295, "MAX": 12655 },
+"17":{"MIN": 6210, "INC": 465, "MAX": 15510 },
+"18":{"MIN": 8135, "INC": 585, "MAX": 19835 },
+"19":{"MIN": 12400, "INC": 615, "MAX": 24700 },
+"20":{"MIN": 14710, "INC": 950, "MAX": 28010 },
+"21":{"MIN": 16305, "INC": 1070, "MAX": 31285 },
+"22":{"MIN": 17440, "INC": 1250, "MAX": 34940 },
+},
+"2005": {
+"1":{ "MIN": 2150, "INC": 65, "MAX": 4100 },
+"2":{ "MIN": 2200, "INC": 75, "MAX": 4450 },
+"3":{ "MIN": 2275, "INC": 85, "MAX": 4825 },
+"4":{ "MIN": 2345, "INC": 100, "MAX": 5345 },
+"5":{ "MIN": 2415, "INC": 115, "MAX": 5865 },
+"6":{ "MIN": 2485, "INC": 125, "MAX": 6235 },
+"7":{ "MIN": 2555, "INC": 140, "MAX": 6755 },
+"8":{ "MIN": 2655, "INC": 150, "MAX": 7155 },
+"9":{ "MIN": 2770, "INC": 165, "MAX": 7720 },
+"10":{ "MIN": 2865, "INC": 185, "MAX": 8415 },
+"11":{ "MIN": 2980, "INC": 200, "MAX": 8980 },
+"12":{ "MIN": 3155, "INC": 225, "MAX": 9905 },
+"13":{ "MIN": 3365, "INC": 245, "MAX": 10715 },
+"14":{ "MIN": 3565, "INC": 275, "MAX": 11815 },
+"15":{ "MIN": 3780, "INC": 305, "MAX": 12930 },
+"16":{ "MIN": 4375, "INC": 340, "MAX": 14575 },
+"17":{ "MIN": 7140, "INC": 535, "MAX": 17840 },
+"18":{ "MIN": 9355, "INC": 675, "MAX": 22855 },
+"19":{ "MIN": 14260, "INC": 705, "MAX": 28360 },
+"20":{ "MIN": 16915, "INC": 1095, "MAX": 32245 },
+"21":{ "MIN": 18750, "INC": 1230, "MAX": 35970 },
+"22":{ "MIN": 20055, "INC": 1440, "MAX": 40215 },
+},
+"2007": {
+"1":{ "MIN": 2475, "INC": 75, "MAX": 4725 },
+"2":{ "MIN": 2530, "INC": 85, "MAX": 5080 },
+"3":{ "MIN": 2615, "INC": 100, "MAX": 5615 },
+"4":{ "MIN": 2700, "INC": 115, "MAX": 6150 },
+"5":{ "MIN": 2780, "INC": 135, "MAX": 6830 },
+"6":{ "MIN": 2860, "INC": 145, "MAX": 7210 },
+"7":{ "MIN": 2940, "INC": 160, "MAX": 7740 },
+"8":{ "MIN": 3055, "INC": 175, "MAX": 8305 },
+"9":{ "MIN": 3185, "INC": 190, "MAX": 8885 },
+"10":{ "MIN": 3295, "INC": 215, "MAX": 9745 },
+"11":{ "MIN": 3430, "INC": 230, "MAX": 10330 },
+"12":{ "MIN": 3630, "INC": 260, "MAX": 11430 },
+"13":{ "MIN": 3870, "INC": 285, "MAX": 12420 },
+"14":{ "MIN": 4100, "INC": 315, "MAX": 13550 },
+"15":{ "MIN": 4350, "INC": 350, "MAX": 14850 },
+"16":{ "MIN": 5050, "INC": 390, "MAX": 16750 },
+"17":{ "MIN": 8210, "INC": 615, "MAX": 20510 },
+"18":{ "MIN": 10760, "INC": 775, "MAX": 26260 },
+"19":{ "MIN": 16400, "INC": 810, "MAX": 32600 },
+"20":{ "MIN": 19455, "INC": 1260, "MAX": 37095 },
+"21":{ "MIN": 21565, "INC": 1415, "MAX": 41375 },
+"22":{ "MIN": 23065, "INC": 1655, "MAX": 46235 },
+},
+"2008": {
+"1":{ "MIN": 2970, "INC": 90, "MAX": 5670 },
+"2":{ "MIN": 3035, "INC": 100, "MAX": 6035 },
+"3":{ "MIN": 3140, "INC": 120, "MAX": 6740 },
+"4":{ "MIN": 3240, "INC": 140, "MAX": 7440 },
+"5":{ "MIN": 3340, "INC": 160, "MAX": 8140 },
+"6":{ "MIN": 3430, "INC": 175, "MAX": 8680 },
+"7":{ "MIN": 3530, "INC": 190, "MAX": 9230 },
+"8":{ "MIN": 3655, "INC": 210, "MAX": 9955 },
+"9":{ "MIN": 3820, "INC": 230, "MAX": 10720 },
+"10":{ "MIN": 3955, "INC": 260, "MAX": 11755 },
+"11":{ "MIN": 4115, "INC": 275, "MAX": 12365 },
+"12":{ "MIN": 4355, "INC": 310, "MAX": 13655 },
+"13":{ "MIN": 4645, "INC": 340, "MAX": 14845 },
+"14":{ "MIN": 4920, "INC": 380, "MAX": 16320 },
+"15":{ "MIN": 5220, "INC": 420, "MAX": 17820 },
+"16":{ "MIN": 6060, "INC": 470, "MAX": 20160 },
+"17":{ "MIN": 9850, "INC": 740, "MAX": 24650 },
+"18":{ "MIN": 12910, "INC": 930, "MAX": 31510 },
+"19":{ "MIN": 19680, "INC": 970, "MAX": 39080 },
+"20":{ "MIN": 23345, "INC": 1510, "MAX": 44485 },
+"21":{ "MIN": 25880, "INC": 1700, "MAX": 49680 },
+"22":{ "MIN": 27680, "INC": 1985, "MAX": 55470 },
+},
+"2011": {
+"1":{ "MIN": 4800, "INC": 150, "MAX": 9300 },
+"2":{ "MIN": 4900, "INC": 170, "MAX": 10000 },
+"3":{ "MIN": 5050, "INC": 200, "MAX": 11050 },
+"4":{ "MIN": 5200, "INC": 230, "MAX": 12100 },
+"5":{ "MIN": 5400, "INC": 260, "MAX": 13200 },
+"6":{ "MIN": 5600, "INC": 290, "MAX": 14300 },
+"7":{ "MIN": 5800, "INC": 320, "MAX": 15400 },
+"8":{ "MIN": 6000, "INC": 350, "MAX": 16500 },
+"9":{ "MIN": 6200, "INC": 380, "MAX": 17600 },
+"10":{ "MIN": 6400, "INC": 420, "MAX": 19000 },
+"11":{ "MIN": 6600, "INC": 460, "MAX": 20400 },
+"12":{ "MIN": 7000, "INC": 500, "MAX": 22000 },
+"13":{ "MIN": 7500, "INC": 550, "MAX": 24000 },
+"14":{ "MIN": 8000, "INC": 610, "MAX": 26300 },
+"15":{ "MIN": 8500, "INC": 700, "MAX": 29500 },
+"16":{ "MIN": 10000, "INC": 800, "MAX": 34000 },
+"17":{ "MIN": 16000, "INC": 1200, "MAX": 40000 },
+"18":{ "MIN": 20000, "INC": 1500, "MAX": 50000 },
+"19":{ "MIN": 31000, "INC": 1600, "MAX": 63000 },
+"20":{ "MIN": 36000, "INC": 2350, "MAX": 68900 },
+"21":{ "MIN": 40000, "INC": 2600, "MAX": 76400 },
+"22":{ "MIN": 43000, "INC": 3050, "MAX": 85700 },
+},
+"2015": {
+"1":{ "MIN": 6210, "INC": 195, "MAX": 12060 },
+"2":{ "MIN": 6335, "INC": 220, "MAX": 12935 },
+"3":{ "MIN": 6535, "INC": 260, "MAX": 14335 },
+"4":{ "MIN": 6730, "INC": 300, "MAX": 15730 },
+"5":{ "MIN": 6985, "INC": 340, "MAX": 17185 },
+"6":{ "MIN": 7235, "INC": 375, "MAX": 18485 },
+"7":{ "MIN": 7490, "INC": 415, "MAX": 19940 },
+"8":{ "MIN": 7750, "INC": 455, "MAX": 21400 },
+"9":{ "MIN": 8015, "INC": 495, "MAX": 22865 },
+"10":{ "MIN": 8275, "INC": 544, "MAX": 24595 },
+"11":{ "MIN": 8540, "INC": 595, "MAX": 26390 },
+"12":{ "MIN": 9055, "INC": 650, "MAX": 28555 },
+"13":{ "MIN": 9700, "INC": 715, "MAX": 31150 },
+"14":{ "MIN": 10340, "INC": 790, "MAX": 34040 },
+"15":{ "MIN": 10985, "INC": 905, "MAX": 38135 },
+"16":{ "MIN": 12910, "INC": 1035, "MAX": 43960 },
+"17":{ "MIN": 20680, "INC": 1555, "MAX": 51780 },
+"18":{ "MIN": 25940, "INC": 1950, "MAX": 64940 },
+"19":{ "MIN": 40155, "INC": 2075, "MAX": 81655 },
+"20":{ "MIN": 46705, "INC": 3050, "MAX": 89405 },
+"21":{ "MIN": 51885, "INC": 3375, "MAX": 99135 },
+"22":{ "MIN": 55755, "INC": 3960, "MAX": 111195 },
+},
+"2016": {
+"1":{ "MIN": 7640, "INC": 240, "MAX": 14840 },
+"2":{ "MIN": 7790, "INC": 275, "MAX": 16040 },
+"3":{ "MIN": 8040, "INC": 325, "MAX": 17790 },
+"4":{ "MIN": 8280, "INC": 370, "MAX": 19380 },
+"5":{ "MIN": 8590, "INC": 420, "MAX": 21190 },
+"6":{ "MIN": 8900, "INC": 470, "MAX": 23000 },
+"7":{ "MIN": 9220, "INC": 510, "MAX": 24520 },
+"8":{ "MIN": 9540, "INC": 560, "MAX": 26340 },
+"9":{ "MIN": 9860, "INC": 610, "MAX": 28160 },
+"10":{ "MIN": 10180, "INC": 670, "MAX": 30280 },
+"11":{ "MIN": 10510, "INC": 740, "MAX": 32710 },
+"12":{ "MIN": 11140, "INC": 800, "MAX": 35140 },
+"13":{ "MIN": 11930, "INC": 880, "MAX": 38330 },
+"14":{ "MIN": 12720, "INC": 980, "MAX": 42120 },
+"15":{ "MIN": 13510, "INC": 1120, "MAX": 47110 },
+"16":{ "MIN": 15880, "INC": 1280, "MAX": 54280 },
+"17":{ "MIN": 25440, "INC": 1930, "MAX": 64040 },
+"18":{ "MIN": 31890, "INC": 2400, "MAX": 79890 },
+"19":{ "MIN": 49370, "INC": 2560, "MAX": 100570 },
+"20":{ "MIN": 57410, "INC": 3750, "MAX": 109910 },
+"21":{ "MIN": 63780, "INC": 4150, "MAX": 121880 },
+"22":{ "MIN": 68540, "INC": 4870, "MAX": 136720 },
+},
+"2017": {
+"1":{ "MIN": 9130, "INC": 290, "MAX": 17830 },
+"2":{ "MIN": 9310, "INC": 330, "MAX": 19210 },
+"3":{ "MIN": 9610, "INC": 390, "MAX": 21310 },
+"4":{ "MIN": 9900, "INC": 440, "MAX": 23100 },
+"5":{ "MIN": 10260, "INC": 500, "MAX": 25260 },
+"6":{ "MIN": 10620, "INC": 560, "MAX": 27420 },
+"7":{ "MIN": 10990, "INC": 610, "MAX": 29290 },
+"8":{ "MIN": 11380, "INC": 670, "MAX": 31480 },
+"9":{ "MIN": 11770, "INC": 730, "MAX": 33670 },
+"10":{ "MIN": 12160, "INC": 800, "MAX": 36160 },
+"11":{ "MIN": 12570, "INC": 880, "MAX": 38970 },
+"12":{ "MIN": 13320, "INC": 960, "MAX": 42120 },
+"13":{ "MIN": 14260, "INC": 1050, "MAX": 45760 },
+"14":{ "MIN": 15180, "INC": 1170, "MAX": 50280 },
+"15":{ "MIN": 16120, "INC": 1330, "MAX": 56020 },
+"16":{ "MIN": 18910, "INC": 1520, "MAX": 64510 },
+"17":{ "MIN": 30370, "INC": 2300, "MAX": 76370 },
+"18":{ "MIN": 38350, "INC": 2870, "MAX": 95750 },
+"19":{ "MIN": 59210, "INC": 3050, "MAX": 120210 },
+"20":{ "MIN": 69090, "INC": 4510, "MAX": 132230 },
+"21":{ "MIN": 76720, "INC": 5000, "MAX": 146720 },
+"22":{ "MIN": 82380, "INC": 5870, "MAX": 164560 },
+},
+"2022": {
+"1":{ "MIN": 13550, "INC": 430, "MAX": 26450 },
+"2":{ "MIN": 13820, "INC": 490, "MAX": 28520 },
+"3":{ "MIN": 14260, "INC": 580, "MAX": 31660 },
+"4":{ "MIN": 14690, "INC": 660, "MAX": 34490 },
+"5":{ "MIN": 15230, "INC": 750, "MAX": 37730 },
+"6":{ "MIN": 15760, "INC": 840, "MAX": 40960 },
+"7":{ "MIN": 16310, "INC": 910, "MAX": 43610 },
+"8":{ "MIN": 16890, "INC": 1000, "MAX": 46890 },
+"9":{ "MIN": 17470, "INC": 1090, "MAX": 50170 },
+"10":{ "MIN": 18050, "INC": 1190, "MAX": 53750 },
+"11":{ "MIN": 18650, "INC": 1310, "MAX": 57950 },
+"12":{ "MIN": 19770, "INC": 1430, "MAX": 62670 },
+"13":{ "MIN": 21160, "INC": 1560, "MAX": 67960 },
+"14":{ "MIN": 22530, "INC": 1740, "MAX": 74730 },
+"15":{ "MIN": 23920, "INC": 1980, "MAX": 83320 },
+"16":{ "MIN": 28070, "INC": 2260, "MAX": 95870 },
+"17":{ "MIN": 45070, "INC": 3420, "MAX": 113470 },
+"18":{ "MIN": 56880, "INC": 4260, "MAX": 142080 },
+"19":{ "MIN": 87840, "INC": 4530, "MAX": 178440 },
+"20":{ "MIN": 102470, "INC": 6690, "MAX": 196130 },
+"21":{ "MIN": 113790, "INC": 7365, "MAX": 222855 },
+"22":{ "MIN": 122190, "INC": 8710, "MAX": 244130 },
+},
+
+            };
+
+            selectedYears.forEach(year => {
+                selectedBPS.forEach(bps => {
+                    const data = payScales[year]?.[bps];
+                    if (data) {
+                        const row = `<tr>
+                            <td>${bps}</td>
+                            <td>${year}</td>
+                            <td>${data.MIN}</td>
+                            <td>${data.INC}</td>
+                            <td>${data.MAX}</td>
+                            <td>${data.MIN}</td>
+                            ${generateStages(data.MIN, data.INC, data.MAX)}
+                        </tr>`;
+                        tableBody.insertAdjacentHTML('beforeend', row);
+                    }
+                });
+            });
+        }
+
+        function generateStages(min, inc, max) {
+            let stages = "";
+            let current = min + inc;
+            for (let i = 1; current <= max; i++) {
+                stages += `<td>${current}</td>`;
+                current += inc;
+            }
+            return stages;
+        }
+    </script>
+</body>
+</html>
