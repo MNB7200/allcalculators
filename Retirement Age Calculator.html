@@ -1,0 +1,132 @@
+<!doctype html>
+    
+    
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .calculator-container {
+            text-align: center;
+        }
+        .blog-header {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .calculator {
+            max-width: 400px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .calculator h2 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+        .calculator input, .calculator button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .calculator button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .calculator button:hover {
+            background-color: #2980b9;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #27ae60;
+            padding: 10px;
+            border: 1px solid #2ecc71;
+            border-radius: 5px;
+            background-color: #ecf0f1;
+        }
+    </style>
+
+
+
+<div class="calculator-container">
+	    <div class="calculator">
+        <h2>Age and Retirement Age Calculator</h2>
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" />
+        
+        <label for="retirementAge">Retirement Age:</label>
+        <input type="number" id="retirementAge" name="retirementAge" placeholder="Enter retirement age" />
+        
+        <button onclick="calculate()">Calculate Age and Retirement Date</button>
+        
+        <div id="result" class="result"></div>
+    </div>
+	<h3 style="font-style: italic; font-family: Times New Romans; font-size: 15px; color: red;">made by Noman Muhammad | esedikhan.blogspot.com</h3>
+</div>
+
+<script>
+    function calculate() {
+        const dob = document.getElementById('dob').value;
+        const retirementAge = document.getElementById('retirementAge').value;
+        
+        if (!dob || !retirementAge) {
+            alert('Please enter both your date of birth and retirement age.');
+            return;
+        }
+
+        // Calculate current age
+        const birthDate = new Date(dob);
+        const today = new Date();
+        
+        let years = today.getFullYear() - birthDate.getFullYear();
+        let months = today.getMonth() - birthDate.getMonth();
+        let days = today.getDate() - birthDate.getDate();
+
+        if (days < 0) {
+            months--;
+            days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+        }
+
+        if (months < 0) {
+            years--;
+            months += 12;
+        }
+
+        // Calculate retirement date
+        const retirementDate = new Date(birthDate);
+        retirementDate.setFullYear(birthDate.getFullYear() + parseInt(retirementAge));
+        
+        // Subtract one day to meet the requirement
+        retirementDate.setDate(retirementDate.getDate() - 1);
+        
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const retirementDateString = retirementDate.toLocaleDateString(undefined, options);
+
+        // Display results
+        document.getElementById('result').innerHTML = `
+            <strong>Current Age:</strong> ${years} years, ${months} months, and ${days} days<br>
+            <strong>Retirement Date:</strong> ${retirementDateString}
+        `;
+    }
+</script>
+
+
+</!doctype>
